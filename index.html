@@ -1,280 +1,1058 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta charset="utf-8">
-<title>Biology Unit 1 Field Guide & Drill Bench</title>
+<title>Study</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- IBM Fonts from Source 2 -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap">
 <style>
-:root {
-  /* Source 2 Variables */
-  --paper: #FAFBFC;
-  --panel: #FFFFFF;
-  --sunk: #F1F5F7;
-  --ink: #0F1B22;
-  --ink-2: #3D525E;
-  --ink-3: #6B808C;
-  --rule: #D8E2E8;
-  --rule-soft: #E8EFF2;
-  --primary: #0C6A7C;
-  --primary-soft: #E2F0F2;
-  --signal: #A82A5C;
-  --signal-soft: #FAE8EF;
-  --shadow: 0 1px 2px rgba(15,27,34,.05);
-
-  /* Mapping Source 1 functionality to Source 2 theme */
-  --bg: var(--paper);
-  --raise: #FFFFFF;
-  --line: var(--rule); 
-  --line2: var(--rule-soft);
-  
-  /* Accent Colors mapped to the new theme */
-  --amber: var(--primary); 
-  --amber-bg: var(--primary-soft); 
-  --amber-line: var(--primary);
-  
-  --ok: #0F8259; /* A green complementing the IBM Plex style */
-  --ok-bg: #E3F5EE; 
-  --ok-line: #0F8259;
-  
-  --no: var(--signal); 
-  --no-bg: var(--signal-soft); 
-  --no-line: var(--signal);
-  --glow: var(--shadow);
-  
-  /* Typography mapped to Source 2 */
-  --fd: "IBM Plex Serif", Georgia, "Times New Roman", serif;
-  --fb: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
-  --fm: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+/* ============================================================
+   SHARED TOKENS - one neutral palette, one accent per section
+   ============================================================ */
+:root{
+  --hdr:52px;
+  --c-paper:#FBFBFA; --c-panel:#FFFFFF; --c-sunk:#F3F3F1;
+  --c-ink:#15151A;  --c-ink2:#5B5B65;  --c-ink3:#909099;
+  --c-line:#E5E5E1; --c-line2:#EFEFEC;
+  --c-teal:#0C6A7C;  --c-teal-soft:#E3F0F2;
+  --c-rose:#A82A5C;  --c-rose-soft:#FAE8EF;
+  --c-amber:#8F5400;  --c-amber-bg:#FBF0DB; --c-amber-line:#DCA249;
+  --c-ok:#0B7A52;  --c-ok-bg:#DFF3E9;  --c-ok-line:#48B98A;
+  --c-no:#B3234A;  --c-no-bg:#FCE4EA;  --c-no-line:#E0708F;
+  --font-ui:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"DM Mono",ui-monospace,Consolas,monospace;
 }
-
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#0F1B22; --panel:#182631; --sunk:#20313D; --raise:#1F2E3A;
-  --ink:#FAFBFC; --ink-2:#A3B7C5; --ink-3:#6B808C;
-  --line:#3D525E; --line2:#2E404D;
-  --amber:#46B5CD; --amber-bg:#083B46; --amber-line:#187386;
-  --ok:#3ED498; --ok-bg:#08281D; --ok-line:#1C6A4C;
-  --no:#E05A8D; --no-bg:#4A1127; --no-line:#8E234D;
-  --glow:0 1px 3px rgba(0,0,0,0.3);
+  --c-paper:#0F0F11; --c-panel:#161619; --c-sunk:#1D1D21;
+  --c-ink:#ECECEF;  --c-ink2:#A0A0AB;  --c-ink3:#71717C;
+  --c-line:#28282E; --c-line2:#202026;
+  --c-teal:#5CC3D3;  --c-teal-soft:#123339;
+  --c-rose:#F08FB4;  --c-rose-soft:#341A24;
+  --c-amber:#F5A524;  --c-amber-bg:#2A1E08; --c-amber-line:#6B4A11;
+  --c-ok:#3ED498;  --c-ok-bg:#08281D;  --c-ok-line:#1C6A4C;
+  --c-no:#FF6E8B;  --c-no-bg:#2B0F19;  --c-no-line:#7A2740;
 }}
 :root[data-theme="dark"]{
-  --bg:#0F1B22; --panel:#182631; --sunk:#20313D; --raise:#1F2E3A;
-  --ink:#FAFBFC; --ink-2:#A3B7C5; --ink-3:#6B808C;
-  --line:#3D525E; --line2:#2E404D;
-  --amber:#46B5CD; --amber-bg:#083B46; --amber-line:#187386;
-  --ok:#3ED498; --ok-bg:#08281D; --ok-line:#1C6A4C;
-  --no:#E05A8D; --no-bg:#4A1127; --no-line:#8E234D;
-  --glow:0 1px 3px rgba(0,0,0,0.3);
+  --c-paper:#0F0F11; --c-panel:#161619; --c-sunk:#1D1D21;
+  --c-ink:#ECECEF;  --c-ink2:#A0A0AB;  --c-ink3:#71717C;
+  --c-line:#28282E; --c-line2:#202026;
+  --c-teal:#5CC3D3;  --c-teal-soft:#123339;
+  --c-rose:#F08FB4;  --c-rose-soft:#341A24;
+  --c-amber:#F5A524;  --c-amber-bg:#2A1E08; --c-amber-line:#6B4A11;
+  --c-ok:#3ED498;  --c-ok-bg:#08281D;  --c-ok-line:#1C6A4C;
+  --c-no:#FF6E8B;  --c-no-bg:#2B0F19;  --c-no-line:#7A2740;
 }
 
+/* section palettes, mapped onto the shared neutrals */
+.v-guide{
+  --paper:var(--c-paper); --panel:var(--c-panel); --sunk:var(--c-sunk);
+  --ink:var(--c-ink); --ink-2:var(--c-ink2); --ink-3:var(--c-ink3);
+  --rule:var(--c-line); --rule-soft:var(--c-line2); --grid:var(--c-line2);
+  --primary:var(--c-teal); --primary-soft:var(--c-teal-soft);
+  --signal:var(--c-rose); --signal-soft:var(--c-rose-soft);
+  --focus:var(--c-teal); --shadow:none;
+  --f-display:var(--font-ui); --f-body:var(--font-ui); --f-mono:var(--font-mono);
+  --measure:68ch; --pad:clamp(18px,4vw,40px);
+}
+.v-quiz{
+  --bg:var(--c-paper); --panel:var(--c-panel); --sunk:var(--c-sunk); --raise:var(--c-panel);
+  --ink:var(--c-ink); --ink2:var(--c-ink2); --ink3:var(--c-ink3);
+  --line:var(--c-line); --line2:var(--c-line2);
+  --amber:var(--c-amber); --amber-bg:var(--c-amber-bg); --amber-line:var(--c-amber-line);
+  --ok:var(--c-ok); --ok-bg:var(--c-ok-bg); --ok-line:var(--c-ok-line);
+  --no:var(--c-no); --no-bg:var(--c-no-bg); --no-line:var(--c-no-line);
+  --glow:none;
+  --fd:var(--font-ui); --fb:var(--font-ui); --fm:var(--font-mono);
+}
+
+/* ============================================================
+   SHELL
+   ============================================================ */
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:104px}
+body{margin:0;background:var(--c-paper);color:var(--c-ink);
+     font-family:var(--font-ui);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:none;padding:0}
+:focus-visible{outline:2px solid var(--c-ink);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.hide{display:none!important}
+
+.appbar{
+  position:sticky;top:0;z-index:60;height:var(--hdr);
+  background:var(--c-panel);border-bottom:1px solid var(--c-line);
+  display:flex;align-items:center;
+}
+.appbar-in{max-width:940px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:4px;width:100%}
+.mark{
+  font-weight:700;letter-spacing:-.025em;font-size:16px;text-decoration:none;color:var(--c-ink);
+  margin-right:16px;flex:0 0 auto;
+}
+.tab{
+  font-size:13.5px;font-weight:500;color:var(--c-ink3);text-decoration:none;
+  padding:6px 11px;border-radius:5px;white-space:nowrap;
+}
+.tab:hover{color:var(--c-ink);background:var(--c-sunk)}
+.tab.on{color:var(--c-ink);background:var(--c-sunk)}
+.tab.on::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--tabdot,var(--c-ink3));margin-right:7px;vertical-align:1px}
+.spacer{margin-left:auto}
+.themebtn{font-family:var(--font-mono);font-size:11.5px;color:var(--c-ink3);
+  padding:5px 9px;border:1px solid var(--c-line);border-radius:5px}
+.themebtn:hover{color:var(--c-ink);border-color:var(--c-ink3)}
+@media (max-width:560px){ .mark{margin-right:6px} .tab{padding:6px 8px;font-size:13px} }
+
+.view{display:none}
+.view.on{display:block}
+
+/* the two folded-in sections keep their own sticky bars, below the app bar */
+.v-guide nav.rail{top:var(--hdr)}
+.v-quiz .bar{top:var(--hdr)}
+
+/* ============================================================
+   HOME
+   ============================================================ */
+.v-home{max-width:660px;margin:0 auto;padding:0 24px 100px}
+.v-home header{padding:clamp(48px,10vw,88px) 0 0}
+.v-home h1{font-weight:700;letter-spacing:-.035em;line-height:1;
+  font-size:clamp(40px,8.5vw,60px);margin:0}
+.v-home .count{font-family:var(--font-mono);font-size:12.5px;color:var(--c-ink3);margin:14px 0 0}
+.v-home .group{margin-top:34px}
+.v-home .ghead{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--c-ink3);display:flex;align-items:center;gap:8px;
+  padding-bottom:9px;border-bottom:1px solid var(--c-line);
+}
+.v-home .ghead .n{margin-left:auto;letter-spacing:.06em}
+.v-home .sdot{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+.v-home .row{display:flex;align-items:center;gap:14px;padding:13px 2px;border-bottom:1px solid var(--c-line2)}
+.v-home .row:hover{background:var(--c-sunk)}
+.v-home .row a{
+  color:var(--c-ink);text-decoration:none;font-weight:500;font-size:16.5px;letter-spacing:-.008em;
+  flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.v-home .row a:hover{text-decoration:underline;text-underline-offset:3px}
+.v-home .kind{font-family:var(--font-mono);font-size:11px;color:var(--c-ink3);
+  letter-spacing:.06em;text-transform:uppercase;flex:0 0 auto}
+.v-home .ext{font-family:var(--font-mono);font-size:11px;color:var(--c-ink3);flex:0 0 auto}
+.v-home .note{font-family:var(--font-mono);font-size:12px;color:var(--c-ink3);line-height:1.55;
+  border-top:1px solid var(--c-line);margin-top:44px;padding-top:16px}
+</style>
+<style>
+@media (prefers-color-scheme:dark){}
+.v-guide *{box-sizing:border-box}
+.v-guide{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--f-body);
+    font-size:16px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+.v-guide a{color:var(--primary)}
+.v-guide :focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){.v-guide *{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.v-guide .wrap{max-width:920px;margin:0 auto;padding:0 var(--pad)}
+.v-guide /* ---------- masthead ---------- */
+  header.mast{
+    border-bottom:1px solid var(--rule);
+    background:
+      repeating-linear-gradient(to right,var(--grid) 0 1px,transparent 1px 24px),
+      repeating-linear-gradient(to bottom,var(--grid) 0 1px,transparent 1px 24px),
+      var(--panel);
+  }
+.v-guide .mast-inner{padding:clamp(34px,7vw,64px) 0 clamp(26px,5vw,44px);display:flex;flex-direction:column;gap:16px}
+.v-guide .eyebrow{
+    font-family:var(--f-mono);font-size:11.5px;font-weight:500;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-3);
+  }
+.v-guide h1{
+    font-family:var(--f-display);font-weight:600;
+    font-size:clamp(32px,6.2vw,50px);line-height:1.08;letter-spacing:-.015em;
+    margin:0;text-wrap:balance;
+  }
+.v-guide .standfirst{max-width:60ch;color:var(--ink-2);font-size:17px;margin:0}
+.v-guide .mast-meta{
+    display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;
+  }
+.v-guide .tag{
+    font-family:var(--f-mono);font-size:12px;letter-spacing:.02em;
+    padding:4px 9px;border:1px solid var(--rule);border-radius:3px;
+    background:var(--panel);color:var(--ink-2);white-space:nowrap;
+  }
+.v-guide .tag.hot{border-color:var(--signal);color:var(--signal);background:var(--signal-soft)}
+.v-guide /* ---------- section rail ---------- */
+  nav.rail{
+    position:sticky;top:0;z-index:20;
+    background:color-mix(in srgb,var(--paper) 92%,transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--rule);
+  }
+.v-guide .rail-scroll{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin}
+.v-guide .rail a{
+    flex:0 0 auto;padding:13px 12px;text-decoration:none;color:var(--ink-2);
+    font-family:var(--f-mono);font-size:12.5px;letter-spacing:.02em;
+    border-bottom:2px solid transparent;white-space:nowrap;
+  }
+.v-guide .rail a:hover{color:var(--primary);border-bottom-color:var(--primary)}
+.v-guide .rail a .num{color:var(--ink-3);margin-right:7px}
+.v-guide /* ---------- sections ---------- */
+  main{padding-bottom:80px}
+.v-guide section{padding:clamp(40px,6vw,60px) 0 8px;border-top:1px solid var(--rule-soft)}
+.v-guide section:first-of-type{border-top:none}
+.v-guide .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.v-guide .sec-num{
+    font-family:var(--f-mono);font-size:13px;font-weight:600;color:var(--primary);
+    letter-spacing:.06em;flex:0 0 auto;
+  }
+.v-guide h2{
+    font-family:var(--f-display);font-weight:600;font-size:clamp(24px,3.6vw,31px);
+    line-height:1.15;letter-spacing:-.01em;margin:0;text-wrap:balance;
+  }
+.v-guide .lede{color:var(--ink-2);max-width:var(--measure);margin:6px 0 26px}
+.v-guide h3{
+    font-family:var(--f-body);font-weight:600;font-size:17.5px;
+    margin:34px 0 10px;letter-spacing:-.005em;
+  }
+.v-guide h4{font-family:var(--f-mono);font-size:12px;font-weight:600;letter-spacing:.11em;
+     text-transform:uppercase;color:var(--ink-3);margin:26px 0 10px}
+.v-guide p{max-width:var(--measure);margin:0 0 14px}
+.v-guide ul, .v-guide ol{max-width:var(--measure);margin:0 0 16px;padding-left:22px}
+.v-guide li{margin-bottom:7px}
+.v-guide li::marker{color:var(--ink-3)}
+.v-guide strong{font-weight:600}
+.v-guide em.term{font-style:normal;font-weight:600;color:var(--primary)}
+.v-guide code, .v-guide .mono{font-family:var(--f-mono);font-size:.92em}
+.v-guide code{background:var(--sunk);padding:1px 5px;border-radius:3px}
+.v-guide /* ---------- definition list ---------- */
+  .defs{display:grid;gap:0;border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--panel);margin-bottom:20px}
+.v-guide .def{display:grid;grid-template-columns:minmax(150px,210px) 1fr;gap:0;border-top:1px solid var(--rule-soft)}
+.v-guide .def:first-child{border-top:none}
+.v-guide .def dt{
+    padding:12px 16px;font-weight:600;font-size:14.5px;
+    background:var(--sunk);border-right:1px solid var(--rule-soft);
+  }
+.v-guide .def dd{margin:0;padding:12px 16px;color:var(--ink-2);font-size:15px}
+.v-guide .def dd b{color:var(--ink);font-weight:600}
+@media (max-width:620px){.v-guide .def{grid-template-columns:1fr}
+.v-guide .def dt{border-right:none;border-bottom:1px solid var(--rule-soft);padding-bottom:8px}}
+.v-guide /* ---------- callouts ---------- */
+  .note{
+    border-left:3px solid var(--primary);background:var(--primary-soft);
+    padding:14px 18px;border-radius:0 4px 4px 0;margin:20px 0;max-width:var(--measure);
+  }
+.v-guide .note.trap{border-left-color:var(--signal);background:var(--signal-soft)}
+.v-guide .note .lbl{
+    font-family:var(--f-mono);font-size:11px;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--primary);display:block;margin-bottom:5px;
+  }
+.v-guide .note.trap .lbl{color:var(--signal)}
+.v-guide .note p{margin:0;max-width:none;font-size:15px}
+.v-guide .note p + p{margin-top:9px}
+.v-guide /* ---------- tables ---------- */
+  .tbl-scroll{overflow-x:auto;margin:18px 0 22px;border:1px solid var(--rule);border-radius:4px;background:var(--panel)}
+.v-guide table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px}
+.v-guide caption{
+    caption-side:top;text-align:left;padding:11px 15px;font-family:var(--f-mono);
+    font-size:12px;letter-spacing:.05em;color:var(--ink-3);border-bottom:1px solid var(--rule-soft);
+  }
+.v-guide th, .v-guide td{padding:9px 15px;text-align:left;border-top:1px solid var(--rule-soft);vertical-align:top}
+.v-guide thead th{
+    background:var(--sunk);border-top:none;font-size:12.5px;font-weight:600;
+    letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2);
+  }
+.v-guide td.num, .v-guide th.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.v-guide /* ---------- metric ladder ---------- */
+  .ladder{overflow-x:auto;margin:20px 0 8px}
+.v-guide .ladder-inner{display:flex;min-width:640px;border:1px solid var(--rule);border-radius:4px;overflow:hidden}
+.v-guide .rung{
+    flex:1;padding:13px 10px 14px;text-align:center;background:var(--panel);
+    border-left:1px solid var(--rule-soft);
+  }
+.v-guide .rung:first-child{border-left:none}
+.v-guide .rung.base{background:var(--primary-soft)}
+.v-guide .rung .pre{font-family:var(--f-mono);font-size:14px;font-weight:600;color:var(--ink);display:block}
+.v-guide .rung .sym{font-family:var(--f-mono);font-size:12px;color:var(--primary);display:block;margin-top:2px}
+.v-guide .rung .val{font-family:var(--f-mono);font-size:11.5px;color:var(--ink-3);display:block;margin-top:5px;font-variant-numeric:tabular-nums}
+.v-guide .ladder-key{display:flex;justify-content:space-between;gap:16px;min-width:640px;margin-top:8px;
+    font-family:var(--f-mono);font-size:12px;color:var(--ink-3)}
+.v-guide /* ---------- graph picker ---------- */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin:20px 0 24px}
+.v-guide .card{border:1px solid var(--rule);border-radius:4px;background:var(--panel);padding:16px 17px;display:flex;flex-direction:column;gap:8px}
+.v-guide .card h5{margin:0;font-family:var(--f-body);font-size:15.5px;font-weight:600}
+.v-guide .card .use{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--primary)}
+.v-guide .card p{margin:0;font-size:14.5px;color:var(--ink-2);max-width:none}
+.v-guide .card .ex{font-size:13.5px;color:var(--ink-3);border-top:1px dashed var(--rule);padding-top:8px;margin-top:auto}
+.v-guide /* ---------- practice ---------- */
+  .q{
+    border:1px solid var(--rule);border-radius:4px;background:var(--panel);
+    margin-bottom:10px;overflow:hidden;
+  }
+.v-guide .q > summary{
+    list-style:none;cursor:pointer;padding:14px 17px;display:flex;gap:13px;align-items:flex-start;
+    font-size:15.5px;
+  }
+.v-guide .q > summary::-webkit-details-marker{display:none}
+.v-guide .q > summary::after{
+    content:"Show";margin-left:auto;font-family:var(--f-mono);font-size:11px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--primary);
+    border:1px solid var(--rule);border-radius:3px;padding:3px 8px;flex:0 0 auto;
+  }
+.v-guide .q[open] > summary::after{content:"Hide"}
+.v-guide .q > summary:hover{background:var(--sunk)}
+.v-guide .qn{font-family:var(--f-mono);font-size:13px;color:var(--ink-3);flex:0 0 auto;padding-top:2px}
+.v-guide .ans{padding:0 17px 15px 47px;border-top:1px solid var(--rule-soft);margin-top:0}
+.v-guide .ans p{margin:13px 0 0;font-size:15px;color:var(--ink-2);max-width:none}
+.v-guide .ans p:first-child{margin-top:13px}
+.v-guide .ans .key{color:var(--ink);font-weight:600}
+.v-guide /* ---------- checklist ---------- */
+  .check{border:1px solid var(--rule);border-radius:4px;background:var(--panel);padding:6px 4px}
+.v-guide .check label{display:flex;gap:12px;align-items:flex-start;padding:9px 14px;font-size:15px;cursor:pointer;border-radius:3px}
+.v-guide .check label:hover{background:var(--sunk)}
+.v-guide .check input{margin:5px 0 0;accent-color:var(--primary);width:15px;height:15px;flex:0 0 auto}
+.v-guide footer{border-top:1px solid var(--rule);padding:28px 0 40px;color:var(--ink-3);font-size:14px}
+.v-guide footer p{max-width:var(--measure)}
+@media print{.v-guide nav.rail{display:none}
+.v-guide .q{break-inside:avoid}
+.v-guide .q .ans{display:block!important}
+.v-guide{background:#fff}}
+@media (prefers-color-scheme:dark){}
+.v-quiz *{box-sizing:border-box}
+.v-quiz{
   margin:0;background:var(--bg);color:var(--ink);
   font-family:var(--fb);font-size:16.5px;line-height:1.55;
   -webkit-font-smoothing:antialiased;
 }
-button{font:inherit;color:inherit;cursor:pointer}
-:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
-@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-
-.shell{max-width:860px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
-.mono{font-family:var(--fm)}
-sub{font-size:.72em;line-height:0;vertical-align:-.25em;font-weight:inherit}
-.hide{display:none!important}
-
-/* ============ TOP BAR ============ */
+.v-quiz button{font:inherit;color:inherit;cursor:pointer}
+.v-quiz :focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){.v-quiz *{animation:none!important;transition:none!important}}
+.v-quiz .shell{max-width:860px;margin:0 auto;padding:0 clamp(16px,4vw,32px)}
+.v-quiz .mono{font-family:var(--fm)}
+.v-quiz sub{font-size:.72em;line-height:0;vertical-align:-.25em;font-weight:inherit}
+.v-quiz .hide{display:none!important}
+.v-quiz /* ============ TOP BAR ============ */
 .bar{
   position:sticky;top:0;z-index:40;border-bottom:1px solid var(--line);
   background:var(--panel);
 }
-.bar-in{display:flex;align-items:center;gap:14px;height:56px}
-.brand{
-  font-family:var(--fd);font-weight:600;font-size:16px;letter-spacing:-.01em;
+.v-quiz .bar-in{display:flex;align-items:center;gap:14px;height:56px}
+.v-quiz .brand{
+  font-family:var(--fd);font-weight:800;font-size:15px;letter-spacing:-.01em;
   display:flex;align-items:center;gap:9px;margin-right:auto;
 }
-.dot{width:9px;height:9px;border-radius:50%;background:var(--amber);flex:0 0 auto;box-shadow:var(--glow)}
-.bar .chip{
+.v-quiz .dot{width:9px;height:9px;border-radius:50%;background:var(--amber);flex:0 0 auto;box-shadow:var(--glow)}
+.v-quiz .bar .chip{
   font-family:var(--fm);font-size:12px;font-weight:500;padding:5px 9px;
-  border:1px solid var(--line);border-radius:4px;color:var(--ink-2);
+  border:1px solid var(--line);border-radius:4px;color:var(--ink2);
   background:var(--sunk);white-space:nowrap;font-variant-numeric:tabular-nums;
 }
-.chip b{color:var(--ink);font-weight:600}
-.chip.streak{border-color:var(--amber-line);color:var(--amber);background:var(--amber-bg)}
-.icobtn{background:none;border:1px solid var(--line);border-radius:4px;padding:5px 9px;
-  font-family:var(--fm);font-size:12px;color:var(--ink-2)}
-.icobtn:hover{border-color:var(--amber-line);color:var(--amber)}
-.icobtn.armed{border-color:var(--no-line);color:var(--no);background:var(--no-bg);font-weight:600}
-.prog{height:3px;background:var(--sunk)}
-.prog i{display:block;height:100%;background:var(--amber);width:0;transition:width .28s ease}
-
-/* ============ HOME ============ */
+.v-quiz .chip b{color:var(--ink);font-weight:700}
+.v-quiz .chip.streak{border-color:var(--amber-line);color:var(--amber);background:var(--amber-bg)}
+.v-quiz .icobtn{background:none;border:1px solid var(--line);border-radius:4px;padding:5px 9px;
+  font-family:var(--fm);font-size:12px;color:var(--ink2)}
+.v-quiz .icobtn:hover{border-color:var(--amber-line);color:var(--amber)}
+.v-quiz .icobtn.armed{border-color:var(--no-line);color:var(--no);background:var(--no-bg);font-weight:700}
+.v-quiz .prog{height:3px;background:var(--sunk)}
+.v-quiz .prog i{display:block;height:100%;background:var(--amber);width:0;transition:width .28s ease}
+.v-quiz /* ============ HOME ============ */
 .hero{padding:clamp(38px,8vw,72px) 0 clamp(24px,4vw,34px)}
-.kick{
-  font-family:var(--fm);font-size:12px;font-weight:500;letter-spacing:.15em;
+.v-quiz .kick{
+  font-family:var(--fm);font-size:11.5px;font-weight:500;letter-spacing:.18em;
   text-transform:uppercase;color:var(--amber);margin-bottom:14px;
 }
-h1{
-  font-family:var(--fd);font-weight:600;letter-spacing:-.01em;line-height:1.1;
-  font-size:clamp(36px,8vw,68px);margin:0 0 18px;text-wrap:balance;
+.v-quiz h1{
+  font-family:var(--fd);font-weight:800;letter-spacing:-.028em;line-height:.98;
+  font-size:clamp(38px,9vw,74px);margin:0 0 18px;text-wrap:balance;
 }
-h1 .sub{display:block;color:var(--ink-2);font-family:var(--fb);font-weight:400;font-size:.32em;letter-spacing:0;margin-top:20px;line-height:1.45;max-width:35ch}
-.hero p{max-width:56ch;color:var(--ink-2);margin:0 0 22px;font-size:17px}
-.statline{display:flex;flex-wrap:wrap;gap:22px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.stat b{display:block;font-family:var(--fd);font-weight:600;font-size:26px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.stat span{font-family:var(--fm);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
-
-h2.sec{font-family:var(--fd);font-weight:600;font-size:16px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--ink-3);margin:38px 0 14px}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
-.topic{
+.v-quiz h1 .sub{display:block;color:var(--ink2);font-weight:600;font-size:.30em;letter-spacing:-.005em;margin-top:20px;line-height:1.4;max-width:48ch}
+.v-quiz .hero p{max-width:56ch;color:var(--ink2);margin:0 0 22px;font-size:17px}
+.v-quiz .statline{display:flex;flex-wrap:wrap;gap:22px;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.v-quiz .stat b{display:block;font-family:var(--fd);font-weight:800;font-size:26px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.v-quiz .stat span{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3)}
+.v-quiz h2.sec{font-family:var(--fd);font-weight:700;font-size:14px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink3);margin:38px 0 14px}
+.v-quiz .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.v-quiz .topic{
   text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:6px;
   padding:16px 17px 14px;display:flex;flex-direction:column;gap:7px;
-  transition:border-color .15s,transform .15s, box-shadow .15s;position:relative;overflow:hidden;
-  box-shadow: var(--shadow);
+  transition:border-color .15s,transform .15s;position:relative;overflow:hidden;
 }
-.topic::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accentbar,var(--line))}
-.topic:hover{border-color:var(--amber-line);transform:translateY(-2px);box-shadow: 0 4px 8px rgba(15,27,34,.08)}
-.topic .tnum{font-family:var(--fm);font-size:11px;color:var(--ink-3);letter-spacing:.1em}
-.topic .tname{font-family:var(--fd);font-weight:600;font-size:18px;letter-spacing:-.01em;line-height:1.2}
-.topic .tdesc{font-size:14px;color:var(--ink-2);line-height:1.45}
-.topic .tfoot{display:flex;align-items:center;gap:10px;margin-top:6px;padding-top:10px;border-top:1px solid var(--line2);
-  font-family:var(--fm);font-size:11.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
-.topic .best{margin-left:auto;color:var(--ok)}
-
-.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:8px}
-.mode{
+.v-quiz .topic::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accentbar,var(--line))}
+.v-quiz .topic:hover{border-color:var(--amber-line);transform:translateY(-2px)}
+.v-quiz .topic .tnum{font-family:var(--fm);font-size:11px;color:var(--ink3);letter-spacing:.1em}
+.v-quiz .topic .tname{font-family:var(--fd);font-weight:700;font-size:18px;letter-spacing:-.01em;line-height:1.2}
+.v-quiz .topic .tdesc{font-size:14px;color:var(--ink2);line-height:1.45}
+.v-quiz .topic .tfoot{display:flex;align-items:center;gap:10px;margin-top:6px;padding-top:10px;border-top:1px solid var(--line2);
+  font-family:var(--fm);font-size:11.5px;color:var(--ink3);font-variant-numeric:tabular-nums}
+.v-quiz .topic .best{margin-left:auto;color:var(--ok)}
+.v-quiz .modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:8px}
+.v-quiz .mode{
   text-align:left;background:var(--sunk);border:1px solid var(--line);border-radius:6px;padding:15px 16px;
   display:flex;flex-direction:column;gap:5px;transition:border-color .15s,background .15s;
 }
-.mode:hover{border-color:var(--amber-line);background:var(--panel)}
-.mode strong{font-family:var(--fd);font-weight:600;font-size:16px;letter-spacing:-.01em}
-.mode span{font-size:13.5px;color:var(--ink-2);line-height:1.4}
-.mode.primary{background:var(--amber-bg);border-color:var(--amber-line)}
-.mode.primary strong{color:var(--amber)}
-
-.lenrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 4px}
-.lenrow .lbl{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-right:4px}
-.len{
+.v-quiz .mode:hover{border-color:var(--amber-line);background:var(--panel)}
+.v-quiz .mode strong{font-family:var(--fd);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.v-quiz .mode span{font-size:13.5px;color:var(--ink2);line-height:1.4}
+.v-quiz .mode.primary{background:var(--amber-bg);border-color:var(--amber-line)}
+.v-quiz .mode.primary strong{color:var(--amber)}
+.v-quiz .lenrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 4px}
+.v-quiz .lenrow .lbl{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-right:4px}
+.v-quiz .len{
   font-family:var(--fm);font-size:13px;padding:6px 13px;border:1px solid var(--line);
-  border-radius:4px;background:var(--panel);color:var(--ink-2);
+  border-radius:4px;background:var(--panel);color:var(--ink2);
 }
-.len[aria-pressed="true"]{background:var(--amber-bg);border-color:var(--amber-line);color:var(--amber);font-weight:600}
-.len:hover{border-color:var(--amber-line)}
-
-/* ============ QUIZ ============ */
+.v-quiz .len[aria-pressed="true"]{background:var(--amber-bg);border-color:var(--amber-line);color:var(--amber);font-weight:700}
+.v-quiz .len:hover{border-color:var(--amber-line)}
+.v-quiz /* ============ QUIZ ============ */
 .quizwrap{padding:clamp(22px,5vw,40px) 0 60px}
-.qmeta{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:16px}
-.pill{
+.v-quiz .qmeta{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:16px}
+.v-quiz .pill{
   font-family:var(--fm);font-size:11px;letter-spacing:.09em;text-transform:uppercase;
-  padding:4px 9px;border-radius:3px;border:1px solid var(--line);color:var(--ink-3);background:var(--panel);
+  padding:4px 9px;border-radius:3px;border:1px solid var(--line);color:var(--ink3);background:var(--panel);
 }
-.pill.topic-pill{border-color:var(--amber-line);color:var(--amber);background:var(--amber-bg)}
-.pill.d1{color:var(--ok);border-color:var(--ok-line)}
-.pill.d2{color:var(--amber);border-color:var(--amber-line)}
-.pill.d3{color:var(--no);border-color:var(--no-line)}
-
-.qtext{
-  font-family:var(--fd);font-weight:600;letter-spacing:-.01em;line-height:1.3;
+.v-quiz .pill.topic-pill{border-color:var(--amber-line);color:var(--amber);background:var(--amber-bg)}
+.v-quiz .pill.d1{color:var(--ok);border-color:var(--ok-line)}
+.v-quiz .pill.d2{color:var(--amber);border-color:var(--amber-line)}
+.v-quiz .pill.d3{color:var(--no);border-color:var(--no-line)}
+.v-quiz .qtext{
+  font-family:var(--fd);font-weight:600;letter-spacing:-.017em;line-height:1.24;
   font-size:clamp(21px,3.4vw,29px);margin:0 0 22px;text-wrap:balance;
 }
-.opts{display:flex;flex-direction:column;gap:9px}
-.opt{
+.v-quiz .opts{display:flex;flex-direction:column;gap:9px}
+.v-quiz .opt{
   display:flex;gap:14px;align-items:flex-start;text-align:left;width:100%;
   background:var(--panel);border:1px solid var(--line);border-radius:6px;
   padding:14px 16px;font-size:16px;line-height:1.45;color:var(--ink);
   transition:border-color .14s,background .14s,transform .1s;
 }
-.opt:hover:not(:disabled){border-color:var(--amber-line);transform:translateX(2px)}
-.opt:disabled{cursor:default}
-.opt .key{
-  font-family:var(--fm);font-size:12px;font-weight:600;flex:0 0 auto;
+.v-quiz .opt:hover:not(:disabled){border-color:var(--amber-line);transform:translateX(2px)}
+.v-quiz .opt:disabled{cursor:default}
+.v-quiz .opt .key{
+  font-family:var(--fm);font-size:12px;font-weight:700;flex:0 0 auto;
   width:23px;height:23px;display:grid;place-items:center;border-radius:3px;
-  border:1px solid var(--line);color:var(--ink-3);margin-top:2px;
+  border:1px solid var(--line);color:var(--ink3);margin-top:2px;
 }
-.opt.correct{border-color:var(--ok-line);background:var(--ok-bg)}
-.opt.correct .key{background:var(--ok);border-color:var(--ok);color:var(--panel)}
-.opt.wrong{border-color:var(--no-line);background:var(--no-bg)}
-.opt.wrong .key{background:var(--no);border-color:var(--no);color:var(--panel)}
-.opt.dim{opacity:.45}
-
-.fb{
-  margin-top:18px;border:1px solid var(--line);border-left-width:4px;border-radius:0 6px 6px 0;
-  background:var(--panel);padding:15px 18px; box-shadow: var(--shadow);
+.v-quiz .opt.correct{border-color:var(--ok-line);background:var(--ok-bg)}
+.v-quiz .opt.correct .key{background:var(--ok);border-color:var(--ok);color:var(--panel)}
+.v-quiz .opt.wrong{border-color:var(--no-line);background:var(--no-bg)}
+.v-quiz .opt.wrong .key{background:var(--no);border-color:var(--no);color:var(--panel)}
+.v-quiz .opt.dim{opacity:.45}
+.v-quiz .fb{
+  margin-top:18px;border:1px solid var(--line);border-left-width:3px;border-radius:0 6px 6px 0;
+  background:var(--panel);padding:15px 18px;
 }
-.fb.good{border-left-color:var(--ok)}
-.fb.bad{border-left-color:var(--no)}
-.fb .verdict{
-  font-family:var(--fm);font-size:12px;font-weight:600;letter-spacing:.1em;
+.v-quiz .fb.good{border-left-color:var(--ok)}
+.v-quiz .fb.bad{border-left-color:var(--no)}
+.v-quiz .fb .verdict{
+  font-family:var(--fm);font-size:11.5px;font-weight:700;letter-spacing:.13em;
   text-transform:uppercase;display:block;margin-bottom:7px;
 }
-.fb.good .verdict{color:var(--ok)}
-.fb.bad .verdict{color:var(--no)}
-.fb p{margin:0;color:var(--ink-2);font-size:15.5px}
-.fb p + p{margin-top:8px}
-
-.navrow{display:flex;gap:10px;align-items:center;margin-top:20px;flex-wrap:wrap}
-.btn{
-  font-family:var(--fb);font-weight:600;font-size:15px;letter-spacing:0;
+.v-quiz .fb.good .verdict{color:var(--ok)}
+.v-quiz .fb.bad .verdict{color:var(--no)}
+.v-quiz .fb p{margin:0;color:var(--ink2);font-size:15.5px}
+.v-quiz .fb p + p{margin-top:8px}
+.v-quiz .navrow{display:flex;gap:10px;align-items:center;margin-top:20px;flex-wrap:wrap}
+.v-quiz .btn{
+  font-family:var(--fd);font-weight:700;font-size:15px;letter-spacing:-.005em;
   padding:11px 20px;border-radius:5px;border:1px solid var(--line);background:var(--panel);
 }
-.btn:hover{border-color:var(--amber-line)}
-.btn.go{background:var(--amber);border-color:var(--amber);color:#FFFFFF}
-.btn.go:hover{filter:brightness(1.1); color:#FFFFFF}
-.hintkey{font-family:var(--fm);font-size:11.5px;color:var(--ink-3);margin-left:auto}
-
-/* ============ RESULTS ============ */
+.v-quiz .btn:hover{border-color:var(--amber-line)}
+.v-quiz .btn.go{background:var(--amber);border-color:var(--amber);color:#12130F}
+.v-quiz .btn.go:hover{filter:brightness(1.08)}
+.v-quiz .hintkey{font-family:var(--fm);font-size:11.5px;color:var(--ink3);margin-left:auto}
+.v-quiz /* ============ RESULTS ============ */
 .res{padding:clamp(30px,6vw,56px) 0 70px}
-.scorehead{display:flex;gap:clamp(20px,5vw,44px);align-items:center;flex-wrap:wrap;margin-bottom:32px}
-.ring{flex:0 0 auto}
-.scoretext h2{font-family:var(--fd);font-weight:600;font-size:clamp(28px,5vw,42px);letter-spacing:-.01em;margin:0 0 6px;line-height:1.1}
-.scoretext p{margin:0;color:var(--ink-2);max-width:44ch}
-.breakdown{display:flex;flex-direction:column;gap:11px;margin-bottom:34px}
-.brow{display:grid;grid-template-columns:minmax(120px,180px) 1fr auto;gap:14px;align-items:center;font-size:14.5px}
-.brow .bname{font-weight:500}
-.btrack{height:9px;background:var(--sunk);border-radius:5px;overflow:hidden;border:1px solid var(--line2)}
-.btrack i{display:block;height:100%;background:var(--amber);border-radius:5px}
-.brow .bval{font-family:var(--fm);font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
-
-.missed{display:flex;flex-direction:column;gap:10px}
-.miss{border:1px solid var(--line);border-left:4px solid var(--no);border-radius:0 6px 6px 0;background:var(--panel);padding:14px 17px; box-shadow: var(--shadow);}
-.miss .mq{font-family:var(--fd);font-weight:600;font-size:16.5px;letter-spacing:-.01em;margin:0 0 9px;line-height:1.3}
-.miss .line{font-size:14.5px;margin:0 0 4px;color:var(--ink-2)}
-.miss .line b{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-right:7px}
-.miss .yours{color:var(--no)}
-.miss .theirs{color:var(--ok)}
-.miss .why{margin-top:9px;padding-top:9px;border-top:1px solid var(--line2);font-size:14.5px;color:var(--ink-2)}
-
-footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink-3);font-size:13.5px}
-@media (max-width:520px){
-  .brow{grid-template-columns:1fr auto;gap:6px}
-  .brow .btrack{grid-column:1 / -1}
-  .hintkey{display:none}
-}
+.v-quiz .scorehead{display:flex;gap:clamp(20px,5vw,44px);align-items:center;flex-wrap:wrap;margin-bottom:32px}
+.v-quiz .ring{flex:0 0 auto}
+.v-quiz .scoretext h2{font-family:var(--fd);font-weight:800;font-size:clamp(28px,5vw,42px);letter-spacing:-.025em;margin:0 0 6px;line-height:1.05}
+.v-quiz .scoretext p{margin:0;color:var(--ink2);max-width:44ch}
+.v-quiz .breakdown{display:flex;flex-direction:column;gap:11px;margin-bottom:34px}
+.v-quiz .brow{display:grid;grid-template-columns:minmax(120px,180px) 1fr auto;gap:14px;align-items:center;font-size:14.5px}
+.v-quiz .brow .bname{font-weight:600}
+.v-quiz .btrack{height:9px;background:var(--sunk);border-radius:5px;overflow:hidden;border:1px solid var(--line2)}
+.v-quiz .btrack i{display:block;height:100%;background:var(--amber);border-radius:5px}
+.v-quiz .brow .bval{font-family:var(--fm);font-size:13px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.v-quiz .missed{display:flex;flex-direction:column;gap:10px}
+.v-quiz .miss{border:1px solid var(--line);border-left:3px solid var(--no);border-radius:0 6px 6px 0;background:var(--panel);padding:14px 17px}
+.v-quiz .miss .mq{font-family:var(--fd);font-weight:600;font-size:16.5px;letter-spacing:-.01em;margin:0 0 9px;line-height:1.3}
+.v-quiz .miss .line{font-size:14.5px;margin:0 0 4px;color:var(--ink2)}
+.v-quiz .miss .line b{font-family:var(--fm);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-right:7px}
+.v-quiz .miss .yours{color:var(--no)}
+.v-quiz .miss .theirs{color:var(--ok)}
+.v-quiz .miss .why{margin-top:9px;padding-top:9px;border-top:1px solid var(--line2);font-size:14.5px;color:var(--ink2)}
+.v-quiz footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink3);font-size:13.5px}
+@media (max-width:520px){.v-quiz .brow{grid-template-columns:1fr auto;gap:6px}
+.v-quiz .brow .btrack{grid-column:1 / -1}
+.v-quiz .hintkey{display:none}}
 </style>
-</head>
-<body>
 
+<div class="appbar">
+  <div class="appbar-in">
+    <a class="mark" href="#/">Study</a>
+    <a class="tab" href="#/" data-route="/">Home</a>
+    <a class="tab" href="#/guide" data-route="/guide" style="--tabdot:var(--c-teal)">Field Guide</a>
+    <a class="tab" href="#/quiz" data-route="/quiz" style="--tabdot:var(--c-amber)">Drill Bench</a>
+    <span class="spacer"></span>
+    <button class="themebtn" id="themeBtn" title="Toggle light / dark">theme</button>
+  </div>
+</div>
+
+<div class="view v-home on" id="view-home">
+  <header>
+    <h1>Study</h1>
+    <p class="count" id="homeCount"></p>
+  </header>
+  <div id="homeList"></div>
+  <p class="note">Everything here lives in this one file, so it works with no connection. To add a material, put one more line in the MATERIALS list near the top of the page source.</p>
+</div>
+
+<div class="view v-guide" id="view-guide">
+<header class="mast">
+  <div class="wrap mast-inner">
+    <span class="eyebrow">Biology 26/27 &middot; Unit 1 Summative</span>
+    <h1>Introduction to High School Science</h1>
+    <p class="standfirst">Everything from Lessons 1&ndash;6, organized the way the Jeopardy board was: skills, safety, tables &amp; graphs, measurement, chemistry, experimental design. Practice answers are hidden until you click.</p>
+    <div class="mast-meta">
+      <span class="tag hot">Test: Sept 4</span>
+      <span class="tag">6 lessons</span>
+      <span class="tag">41 vocabulary terms</span>
+      <span class="tag">13 objectives</span>
+    </div>
+  </div>
+</header>
+
+<nav class="rail">
+  <div class="wrap rail-scroll">
+    <a href="#skills"><span class="num">01</span>Science Skills</a>
+    <a href="#safety"><span class="num">02</span>Lab Safety</a>
+    <a href="#tables"><span class="num">03</span>Tables &amp; Graphs</a>
+    <a href="#measure"><span class="num">04</span>Measurement</a>
+    <a href="#chem"><span class="num">05</span>Chemistry</a>
+    <a href="#design"><span class="num">06</span>Experimental Design</a>
+    <a href="#practice"><span class="num">07</span>Practice Set</a>
+    <a href="#checklist"><span class="num">08</span>Final Check</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ============ 01 SCIENCE SKILLS ============ -->
+<section id="skills">
+  <div class="sec-head"><span class="sec-num">01</span><h2>The Seven Science Skills</h2></div>
+  <p class="lede">Lesson 1. Expect a "name the skill from the description" question &mdash; that was three of the five Jeopardy clues in this category. Learn them by their <em>one-line</em> definition, not the paragraph.</p>
+
+  <dl class="defs">
+    <div class="def"><dt>Observation</dt><dd>Using your <b>five senses</b> to notice both the big picture and the fine details. The most basic skill &mdash; it's what generates the questions you then investigate.</dd></div>
+    <div class="def"><dt>Classification</dt><dd><b>Grouping things by similarities</b> so you can categorize the world. Can be simple (counting a bug's legs) or complex (naming exact species).</dd></div>
+    <div class="def"><dt>Measurement</dt><dd>Using <b>tools</b> (ruler, beaker, balance) accurately and precisely to collect numerical data.</dd></div>
+    <div class="def"><dt>Prediction</dt><dd>An <b>educated guess about what will happen</b>, based on previous observations or background knowledge. Requires critical thinking.</dd></div>
+    <div class="def"><dt>Controlling variables</dt><dd>Identifying, tracking, and holding variables constant so you can tell what actually caused a change in your results.</dd></div>
+    <div class="def"><dt>Interpretation</dt><dd>Two parts: <b>(1) identifying trends</b> in your results, and <b>(2) working out what those trends mean</b>. Recording an outcome is easy; interpreting it is the hard half.</dd></div>
+    <div class="def"><dt>Communication</dt><dd>Sharing findings clearly through <b>words, models, and graphs</b> &mdash; tables, written work, and presentations. It also helps you absorb and analyze the information yourself.</dd></div>
+  </dl>
+
+  <div class="note">
+    <span class="lbl">Likely question</span>
+    <p><strong>Why does communication matter?</strong> It makes knowledge accessible to other scientists and to stakeholders, so it can influence policy, medicine, and societal progress. <strong>Three ways to communicate data:</strong> tables, graphs, and the written or spoken word (papers, presentations).</p>
+  </div>
+</section>
+
+<!-- ============ 02 LAB SAFETY ============ -->
+<section id="safety">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Lab Safety &amp; Participation</h2></div>
+  <p class="lede">Lesson 1, from the Safety Agreement you signed, the Fire Safety guidelines, and the Participation Rubric. Cluster these into four groups rather than memorizing fifteen separate rules.</p>
+
+  <h3>The four clusters</h3>
+  <dl class="defs">
+    <div class="def"><dt>Behavior</dt><dd>Follow all verbal and written directions; ask if unclear. <b>Always walk</b> &mdash; no running, playing, or goofing around. Report every accident, injury, or broken item to the teacher <b>immediately</b>.</dd></div>
+    <div class="def"><dt>Dress &amp; PPE</dt><dd>Goggles or glasses when indicated &mdash; <b>no exceptions</b>; apron and gloves when directed. <b>Tie hair back</b>, no dangling jewelry, no loose or baggy clothing. Improper attire = not admitted to the lab.</dd></div>
+    <div class="def"><dt>Chemicals &amp; equipment</dt><dd>Treat <b>every</b> chemical as dangerous. Never touch, taste, or smell anything unless told to. Never mix anything undirected. No eating or drinking. Cut <b>away from your body</b>; never pick up hot or broken glassware. Nothing goes down the sink unless instructed.</dd></div>
+    <div class="def"><dt>Workspace</dt><dd>Keep the area clear and aisles free (backpacks at the front). Know where the exits and safety equipment are. At the end: clean, rinse, wipe dry, return equipment, dispose of waste properly, wash hands with soap and water.</dd></div>
+  </dl>
+
+  <h3>Fire safety</h3>
+  <p>Never leave an open flame unattended. Before any lab you should know the location of <strong>two exits</strong> from the building (not elevators), the nearest <strong>fire alarm pull stations</strong>, and the <strong>fire extinguishers</strong> in and near your lab.</p>
+  <p><strong>If you discover a fire:</strong> notify people in the area (yelling is appropriate here) &rarr; pull the alarm if needed &rarr; only attempt to extinguish <em class="term">if it is safe to do so</em> &rarr; evacuate the immediate area &rarr; shut the lab doors and corridor doors behind you.</p>
+
+  <div class="note">
+    <span class="lbl">Memorize: PASS</span>
+    <p>Stand <strong>6&ndash;8 feet</strong> from the fire with your back to an unobstructed exit, then:<br>
+    <strong>P</strong>ull the pin to unlock the operating lever.<br>
+    <strong>A</strong>im low &mdash; at the <em class="term">base</em> of the fire, not the flames.<br>
+    <strong>S</strong>queeze the handle to discharge the agent (hold the hose tightly &mdash; there's pressure).<br>
+    <strong>S</strong>weep side to side, and front to back.</p>
+    <p>Never assume the fire is out. Watch for re-ignition and wait for the fire department.</p>
+  </div>
+
+  <h3>Participation rubric &mdash; 21 points</h3>
+  <div class="tbl-scroll">
+    <table>
+      <caption>Lab Participation Rubric &mdash; point breakdown</caption>
+      <thead><tr><th>Category</th><th class="num">Points</th><th>What earns them</th></tr></thead>
+      <tbody>
+        <tr><td>Pre-lab</td><td class="num">10% of grade</td><td>Completed on time in Google Classroom. Not done = you don't do the lab.</td></tr>
+        <tr><td>Preparedness</td><td class="num">3</td><td>On time, correct lab attire, ready to experiment and calculate, all materials brought.</td></tr>
+        <tr><td>Lab Experimentation</td><td class="num">10</td><td>5 items &times; 2 pts: follow instructions; PPE worn at all times; accurate and complete measurements; data documented; works effectively with partner.</td></tr>
+        <tr><td>Lab Completion</td><td class="num">8</td><td>4 items &times; 2 pts: dispose of waste; clean and store glassware; secure equipment (burners off, probes in buffer); clear, clean, dry the workspace.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 03 TABLES & GRAPHS ============ -->
+<section id="tables">
+  <div class="sec-head"><span class="sec-num">03</span><h2>Data Tables &amp; Graphs</h2></div>
+  <p class="lede">Lesson 2. The biggest section on the test: you'll have to build a table, pick the right graph, spot what's broken in a graph, and read trends out of one.</p>
+
+  <h3>Data table &mdash; the four required elements</h3>
+  <p>A <em class="term">data table</em> is a method for organizing information (usually numerical) visually and understandably, normally from observation or experimentation. Every table you make needs all four:</p>
+  <ol>
+    <li><strong>Title describing the variables.</strong> Use words to say what the data shows, and name the IV and DV. Standard format: <em>"The Effect of ___ on ___."</em> It may also mention controlled variables. Example: "The Effect of Heat on Cricket Chirp Rate."</li>
+    <li><strong>Headings with units.</strong> Each heading gives the variable's name <em>and</em> its unit of measurement for quantitative data &mdash; e.g. <code>Air Pressure (lbs/cm&sup2;)</code>.</li>
+    <li><strong>Columns for the data, with trials in separate columns.</strong> The IV levels run down the left; each trial gets its own column; the average goes in the far-right column.</li>
+    <li><strong>Data to the correct precision, with the same number of decimal places</strong> throughout &mdash; including the average.</li>
+  </ol>
+
+  <div class="tbl-scroll">
+    <table>
+      <caption>Model table &mdash; every element in place</caption>
+      <thead>
+        <tr><th rowspan="2">Time<br>(minutes)</th><th colspan="6">Temperature of Apple Juice (&deg;C)</th></tr>
+        <tr><th class="num">Trial 1</th><th class="num">Trial 2</th><th class="num">Trial 3</th><th class="num">Trial 4</th><th class="num">Trial 5</th><th class="num">Average</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">0</td><td class="num">32.2</td><td class="num">30.3</td><td class="num">31.0</td><td class="num">29.8</td><td class="num">30.4</td><td class="num">30.7</td></tr>
+        <tr><td class="num">3</td><td class="num">41.4</td><td class="num">39.9</td><td class="num">40.6</td><td class="num">41.2</td><td class="num">39.8</td><td class="num">40.6</td></tr>
+        <tr><td class="num">6</td><td class="num">68.3</td><td class="num">69.2</td><td class="num">67.1</td><td class="num">67.6</td><td class="num">68.0</td><td class="num">68.0</td></tr>
+        <tr><td class="num">9</td><td class="num">86.7</td><td class="num">88.1</td><td class="num">86.8</td><td class="num">87.5</td><td class="num">87.7</td><td class="num">87.4</td></tr>
+        <tr><td class="num">12</td><td class="num">94.1</td><td class="num">94.0</td><td class="num">93.4</td><td class="num">93.6</td><td class="num">93.1</td><td class="num">93.6</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Title: <em>The Time Taken to Heat Apple Juice.</em> Note that every value carries <strong>one decimal place</strong> &mdash; averages included, even though the raw arithmetic gives you more digits.</p>
+
+  <div class="note">
+    <span class="lbl">Vocabulary you'll be asked for</span>
+    <p><strong>Raw data</strong> is what you actually measured. <strong>Derived data</strong> (also called processed data) is a value found mathematically rather than measured &mdash; an average is the classic example. It isn't "real" data; nobody observed it.</p>
+  </div>
+
+  <h3>Picking the right graph</h3>
+  <div class="cards">
+    <div class="card">
+      <span class="use">Change over time</span>
+      <h5>Line graph</h5>
+      <p>Use when you want to see how data changes over time. Multiple lines let you compare several data sets at once. A steep curve = a <strong>fast</strong> rate of change.</p>
+      <span class="ex">Oxygen produced by a plant, measured hourly for 24 hours.</span>
+    </div>
+    <div class="card">
+      <span class="use">Comparing categories</span>
+      <h5>Bar graph</h5>
+      <p>Use to compare different data sets or groups, especially when the specific values matter. Stacked bars can show the composition of broader categories.</p>
+      <span class="ex">Salaries of four professions: teacher, vet, engineer, banker.</span>
+    </div>
+    <div class="card">
+      <span class="use">Parts of a whole</span>
+      <h5>Pie chart</h5>
+      <p>Use for percentages / proportions of a whole; subgroups must total 100%. Best for <em>relative</em> proportions, not specific values. Falls apart past about five categories.</p>
+      <span class="ex">Percentage of students in the class who are male vs. female.</span>
+    </div>
+    <div class="card">
+      <span class="use">Relationship between two numbers</span>
+      <h5>Scatter plot</h5>
+      <p>Use to compare <strong>two numeric variables</strong> and visualize the relationship between many separate data points. Add a line of best fit to show the correlation.</p>
+      <span class="ex">Hours spent studying vs. test scores; cricket leg length vs. antenna length.</span>
+    </div>
+  </div>
+
+  <p>The Graph Choice Chart asks it as one question: <strong>what is your question asking?</strong></p>
+  <div class="tbl-scroll">
+    <table>
+      <caption>Graph Choice Chart, condensed</caption>
+      <thead><tr><th>If the question asks about&hellip;</th><th>Kind of data</th><th>Make a&hellip;</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Variability</strong> of one group (range, shape, center)</td><td>One categorical group, one numeric variable</td><td>Frequency plot: dot plot, box &amp; whisker, or histogram</td></tr>
+        <tr><td><strong>Comparing groups</strong> &mdash; all the data points</td><td>Two or more groups, one numeric variable</td><td>A frequency plot for each group</td></tr>
+        <tr><td><strong>Comparing groups</strong> &mdash; one summary number each (mean, median, total)</td><td>Two or more groups, one numeric variable</td><td>Bar graph</td></tr>
+        <tr><td><strong>Correlation</strong>, not through time</td><td>Two numeric variables</td><td>Scatter plot with a line of best fit</td></tr>
+        <tr><td><strong>Correlation</strong> through linear time</td><td>Two numeric variables, one is time</td><td>Line graph &mdash; put time on the x-axis</td></tr>
+        <tr><td><strong>Proportion</strong> of a total</td><td>Subgroup sizes as % of the whole (= 100%)</td><td>Pie chart or stacked bar graph</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Building a graph correctly</h3>
+  <ul>
+    <li><strong>Independent variable on the x-axis, dependent variable on the y-axis.</strong> This is the single most-tested rule in the section &mdash; it was one of the two errors in the Jeopardy "what's wrong with this graph" clue.</li>
+    <li><strong>Both axes need units.</strong> "Height" is wrong; "Height (cm)" is right. That was the other error.</li>
+    <li>Axes drawn and scaled correctly, labeled clearly, data plotted accurately.</li>
+    <li>Legend present if needed; title and/or caption present; trend line shown on scatter plots and line graphs.</li>
+    <li>Neat, legible, and it actually helps answer the question.</li>
+  </ul>
+  <p>Before graphing anything, identify the <strong>IV, the DV, and the range of each</strong>. For the turtle-egg data (16&ndash;26&nbsp;&deg;C, 3&ndash;17 eggs hatched), the IV is temperature with range 16&ndash;26 and the DV is number hatched with range 3&ndash;17.</p>
+
+  <h3>Trends: correlation vs. relationship</h3>
+  <p>These are two different pairs of words and the test can ask for both about the same graph.</p>
+  <dl class="defs">
+    <div class="def"><dt>Positive correlation</dt><dd>The slope of the data runs <b>up and to the right</b>.</dd></div>
+    <div class="def"><dt>Negative correlation</dt><dd>The slope runs <b>down and to the right</b>. (Data can also have <b>no correlation</b> at all.)</dd></div>
+    <div class="def"><dt>Direct relationship</dt><dd>Both variables move <b>the same way</b> &mdash; both increase, or both decrease. <em>Higher temperature &rarr; higher perspiration rate. Wider pipe &rarr; more water flow.</em></dd></div>
+    <div class="def"><dt>Inverse relationship</dt><dd>One variable increases while the other <b>decreases</b>. <em>More exercise &rarr; lower heart-disease risk. The farther you drive, the less distance remains.</em></dd></div>
+    <div class="def"><dt>Line of best fit</dt><dd>The trend line drawn through scattered points. It lets you <b>derive unknown data points and make predictions</b> beyond the values you measured.</dd></div>
+  </dl>
+
+  <h3>Why data visualization is done well or badly</h3>
+  <p>From the Ella Worsdale blog reading: pie charts get a bad reputation because <strong>the human brain struggles to compare angles</strong>. With little-league runs in a pie chart you can just about pick out first place, but not second. Put the same data in a <strong>single-color bar chart sorted by size</strong> and the ranking is instantly readable. The point of data visualization is to make data accessible and enable understanding &mdash; if a chart isn't easy to interpret, it's simply the wrong choice.</p>
+</section>
+
+<!-- ============ 04 MEASUREMENT ============ -->
+<section id="measure">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Measurement, Accuracy &amp; Precision</h2></div>
+  <p class="lede">Lesson 3. This section is where points are won and lost on <em>arithmetic</em>, so do the conversions with a method rather than by instinct.</p>
+
+  <h3>Quantitative vs. qualitative</h3>
+  <p><em class="term">Quantitative data</em> is based on <strong>numbers</strong> &mdash; measurements taken with tools, or counting. <em class="term">Qualitative data</em> is based on <strong>description and interpretation</strong>, and is not numerical.</p>
+  <div class="tbl-scroll">
+    <table>
+      <caption>Sort these &mdash; a version of this appeared in class</caption>
+      <thead><tr><th>Statement</th><th>Type</th></tr></thead>
+      <tbody>
+        <tr><td>Ms. Clark is 163&nbsp;cm tall.</td><td>Quantitative</td></tr>
+        <tr><td>Timoth&eacute;e Chalamet has black hair.</td><td>Qualitative</td></tr>
+        <tr><td>Mr. Palmer is very funny.</td><td>Qualitative</td></tr>
+        <tr><td>Oregon is 8824.03&nbsp;km from Jeju.</td><td>Quantitative</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The metric system</h3>
+  <p>Base units: <strong>meter (m)</strong> for distance, <strong>gram (g)</strong> for mass, <strong>liter (L)</strong> for volume. The metric system works because the <em>same</em> prefix scale applies to all of them &mdash; a kilogram relates to a gram exactly the way a kilometer relates to a meter.</p>
+
+  <div class="ladder">
+    <div class="ladder-inner">
+      <div class="rung"><span class="pre">Kilo</span><span class="sym">k&mdash;</span><span class="val">1000 units</span></div>
+      <div class="rung"><span class="pre">Hecto</span><span class="sym">h&mdash;</span><span class="val">100 units</span></div>
+      <div class="rung"><span class="pre">Deka</span><span class="sym">da&mdash;</span><span class="val">10 units</span></div>
+      <div class="rung base"><span class="pre">Base</span><span class="sym">m / g / L</span><span class="val">1 unit</span></div>
+      <div class="rung"><span class="pre">Deci</span><span class="sym">d&mdash;</span><span class="val">0.1 units</span></div>
+      <div class="rung"><span class="pre">Centi</span><span class="sym">c&mdash;</span><span class="val">0.01 units</span></div>
+      <div class="rung"><span class="pre">Milli</span><span class="sym">m&mdash;</span><span class="val">0.001 units</span></div>
+    </div>
+    <div class="ladder-key"><span>&larr; climbing UP: &divide;10 per step, decimal moves LEFT</span><span>climbing DOWN: &times;10 per step, decimal moves RIGHT &rarr;</span></div>
+  </div>
+  <p>You are expected to have these prefixes and their values <strong>memorized</strong>. Count the steps between the two prefixes, then move the decimal that many places in that direction. <code>812 cm &rarr; m</code> is two steps up: <strong>8.12 m</strong>. <code>1.7 kg &rarr; g</code> is three steps down: <strong>1700 g</strong>.</p>
+
+  <h4>Factor-label method (dimensional analysis)</h4>
+  <p>The safer method when the jump is large. Convert 240,500 cm to km:</p>
+  <p class="mono" style="background:var(--sunk);border:1px solid var(--rule);border-radius:4px;padding:13px 15px;overflow-x:auto;">240,500&nbsp;cm &nbsp;&times;&nbsp; (1 m / 100 cm) &nbsp;&times;&nbsp; (1 km / 1000 m) &nbsp;=&nbsp; 2.405 km</p>
+  <ol>
+    <li>Write your starting unit.</li>
+    <li>Convert to the <strong>base</strong> unit. Tip: list the <em>larger</em> unit as 1, and put how many of the smaller unit make 1 of the larger.</li>
+    <li>Convert to the final desired unit the same way. The unwanted units cancel diagonally.</li>
+  </ol>
+
+  <div class="tbl-scroll">
+    <table>
+      <caption>Worked conversion practice &mdash; from the Measurement slides and Jeopardy</caption>
+      <thead><tr><th>Convert</th><th>Steps</th><th class="num">Answer</th></tr></thead>
+      <tbody>
+        <tr><td>34 g &rarr; kg</td><td>3 steps up</td><td class="num">0.034 kg</td></tr>
+        <tr><td>54,382 mL &rarr; L</td><td>3 steps up</td><td class="num">54.382 L</td></tr>
+        <tr><td>12.9 mm &rarr; cm</td><td>1 step up</td><td class="num">1.29 cm</td></tr>
+        <tr><td>615 kL &rarr; L</td><td>3 steps down</td><td class="num">615,000 L</td></tr>
+        <tr><td>7.3 dam &rarr; dm</td><td>2 steps down</td><td class="num">730 dm</td></tr>
+        <tr><td>4,201 hg &rarr; mg</td><td>5 steps down</td><td class="num">420,100,000 mg</td></tr>
+        <tr><td>789.1 dm &rarr; dam</td><td>2 steps up</td><td class="num">7.891 dam</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Accuracy vs. precision</h3>
+  <dl class="defs">
+    <div class="def"><dt>Accuracy</dt><dd>How <b>close your data is to the correct (accepted) value</b>. Think: hitting the bullseye.</dd></div>
+    <div class="def"><dt>Precision</dt><dd>How <b>consistent your data is &mdash; how close the measurements are to each other</b>. Think: a tight cluster, wherever it lands.</dd></div>
+  </dl>
+  <p>On a target diagram: a tight cluster <em>on</em> the bullseye is <strong>both</strong>; a tight cluster off to one side is <strong>precise but not accurate</strong>; points scattered evenly around the bullseye average out correctly but are <strong>accurate-ish, not precise</strong>; points scattered off to one side are <strong>neither</strong>. Experimental data needs both to be valid and credible.</p>
+
+  <div class="note trap">
+    <span class="lbl">Three limits on every measurement</span>
+    <p>1. The accuracy of the <strong>measurer</strong>. 2. The accuracy of the <strong>observer</strong> (often the same person). 3. The <strong>precision of the tool</strong>. Because tools and observers are both imperfect, <em>all measurements contain error</em> &mdash; which is why 100 mL measured in a beaker does not read as exactly 100 mL when poured into a graduated cylinder.</p>
+  </div>
+
+  <h3>How to actually take a reading</h3>
+  <ul>
+    <li><strong>Measure, then estimate one decimal place past what you can clearly see.</strong> If the smallest markings are whole mL, you report tenths of an mL. This is why an answer like <code>38.0 mL</code> is correct and <code>38 mL</code> is not &mdash; the zero is the estimated digit and it has to be there.</li>
+    <li><strong>Liquids: always read the bottom of the meniscus</strong>, the bottom of the curve, at eye level. Liquids stick to the sides of the container and won't show a straight line.</li>
+    <li><strong>A graduated cylinder is more precise than a beaker</strong> because its scale (its "graduations") is finer &mdash; more markings means more digits you can legitimately report.</li>
+    <li>Tools can be built at different scales, so read the numbers on the tool in front of you rather than assuming.</li>
+  </ul>
+
+  <div class="note">
+    <span class="lbl">Reporting derived data</span>
+    <p>An average must be reported to the <strong>same precision as the raw data it came from</strong>. If your measurements had two decimal places and your calculator says <code>638.6794125 m</code>, you report <strong>638.68 m</strong>. Do not copy the whole calculator display &mdash; and do not round away real precision either.</p>
+  </div>
+</section>
+
+<!-- ============ 05 CHEMISTRY ============ -->
+<section id="chem">
+  <div class="sec-head"><span class="sec-num">05</span><h2>Introduction to Chemistry</h2></div>
+  <p class="lede">Lesson 4. Chemistry is the branch of science that deals with the identification and properties of different types of matter, especially when they interact and change to form new substances.</p>
+
+  <p><strong>Why a biologist learns it:</strong> living things are made of biological molecules. Chemistry explains the structure and function of those molecules, the processes living things carry out (metabolism, growth, reproduction), how enzymes speed up chemical reactions, and how DNA stores genetic information.</p>
+
+  <h3>Atoms and elements</h3>
+  <ul>
+    <li>All matter in the universe is made of <em class="term">atoms</em>. An atom is the <strong>smallest unit of matter that retains its elemental properties</strong>. (From the Greek <em>atomos</em> &mdash; "uncuttable.")</li>
+    <li>An <em class="term">element</em> is matter made of <strong>only one type of atom</strong>.</li>
+    <li>Individual atoms are <strong>mostly empty space</strong>.</li>
+    <li>The numbers of protons, neutrons, and electrons give elements their <em class="term">properties</em>.</li>
+  </ul>
+
+  <h3>The three subatomic particles</h3>
+  <p>"Sub-" means smaller, "-atomic" means atom &mdash; particles smaller than an atom. Be able to reproduce this table from memory.</p>
+  <div class="tbl-scroll">
+    <table>
+      <caption>Subatomic particles</caption>
+      <thead><tr><th>Particle</th><th>Location</th><th>Charge</th><th class="num">Mass (amu)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Proton</strong></td><td>Nucleus</td><td>Positive (+)</td><td class="num">1</td></tr>
+        <tr><td><strong>Neutron</strong></td><td>Nucleus</td><td>Neutral (none)</td><td class="num">1</td></tr>
+        <tr><td><strong>Electron</strong></td><td>Electron cloud</td><td>Negative (&minus;)</td><td class="num">~0</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li>The <em class="term">nucleus</em> sits at the center of the atom and contains the protons and neutrons. The neutrons keep the nucleus <strong>stable</strong>.</li>
+    <li><strong>The number of protons determines what element an atom is.</strong> This is a guaranteed question.</li>
+    <li>Electrons spin around the outside in the <em class="term">electron cloud</em>, in distinct regions called <strong>energy levels</strong>. They gain or lose energy by moving between levels. Because they're on the outside, electrons are what interact with the world.</li>
+  </ul>
+
+  <h3>Bonding</h3>
+  <p>A neutral atom has <strong>equal numbers of protons and electrons</strong>. But atoms also "want" a full outermost energy level, so they give, take, and share electrons with other atoms. That giving, taking and sharing is <em class="term">chemical bonding</em>, and it is the cause of chemical reactions. Which bond forms depends on how strongly the atoms pull on each other's electrons and how many electrons each needs.</p>
+  <dl class="defs">
+    <div class="def"><dt>Ionic bond</dt><dd>One atom <b>takes</b> an electron from another. Losing electrons leaves an atom <b>positively</b> charged; gaining them leaves it <b>negatively</b> charged. Any charged atom is an <b>ion</b>, and the ionic bond is the <b>attraction between two oppositely-charged ions</b>.</dd></div>
+    <div class="def"><dt>Covalent bond</dt><dd>Atoms <b>share</b> one or more electrons, so their charges don't change. Sharing more than one electron makes stronger <b>double and triple bonds</b> &mdash; nitrogen's triple bond is very hard to break.</dd></div>
+    <div class="def"><dt>Molecule</dt><dd>A group of <b>two or more atoms held together by covalent bonds</b>. Covalent bonding is the one that forms molecules &mdash; ionic bonding does not.</dd></div>
+  </dl>
+
+  <h3>Reading chemical formulas</h3>
+  <p>Two numbers, two jobs:</p>
+  <ul>
+    <li>The <strong>coefficient</strong> is the big number in front &mdash; it counts <strong>molecules</strong>.</li>
+    <li>The <strong>subscript</strong> is the small number below &mdash; it counts <strong>atoms inside one molecule</strong>.</li>
+  </ul>
+  <div class="tbl-scroll">
+    <table>
+      <caption>Formula practice</caption>
+      <thead><tr><th>Formula</th><th class="num">Molecules</th><th>Each one contains</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">2 H<sub>2</sub>O</td><td class="num">2</td><td>2 hydrogen atoms + 1 oxygen atom (6 atoms total)</td></tr>
+        <tr><td class="mono">7 O<sub>2</sub></td><td class="num">7</td><td>2 oxygen atoms (14 atoms total)</td></tr>
+        <tr><td class="mono">4 NH<sub>3</sub></td><td class="num">4</td><td>1 nitrogen + 3 hydrogen (16 atoms total)</td></tr>
+        <tr><td class="mono">C<sub>6</sub>H<sub>12</sub>O<sub>6</sub></td><td class="num">1</td><td>6 carbon + 12 hydrogen + 6 oxygen (24 atoms total)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>To draw <code>3 NO<sub>2</sub></code>: draw <strong>three separate groups</strong>, each with one N bonded to two O's. Three molecules, not one big cluster.</p>
+
+  <div class="note">
+    <span class="lbl">Reaction equations</span>
+    <p><strong>Reactants &rarr; Products.</strong> Reactants are what you start with (left of the arrow); products are what you end with (right of the arrow). In <code>C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6 O<sub>2</sub> &rarr; 6 CO<sub>2</sub> + 6 H<sub>2</sub>O</code>, the products are <strong>CO<sub>2</sub> and H<sub>2</sub>O</strong>.</p>
+  </div>
+
+  <div class="note trap">
+    <span class="lbl">Charge calculation</span>
+    <p>Charge = protons &minus; electrons. An atom with <strong>3 protons and 4 electrons</strong> has one extra negative charge, so its charge is <strong>&minus;1</strong>. More electrons than protons &rarr; negative. Fewer &rarr; positive.</p>
+  </div>
+</section>
+
+<!-- ============ 06 EXPERIMENTAL DESIGN ============ -->
+<section id="design">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Scientific Method &amp; Experimental Design</h2></div>
+  <p class="lede">Lesson 5, and the section with the most written-response potential. You should be able to take any scenario and pull out the hypothesis, the three variable types, and both groups.</p>
+
+  <h3>The scientific method</h3>
+  <p>The general sequence: <strong>observation &rarr; question &rarr; hypothesis &rarr; experiment &rarr; data collection &rarr; analysis &rarr; communication</strong>. It's usually preceded by observation, and hypotheses guide the experiment and end up either <strong>supported or rejected</strong>.</p>
+  <div class="note trap">
+    <span class="lbl">Guaranteed question: is it linear?</span>
+    <p><strong>No &mdash; false.</strong> The order of the steps can vary, you often need to repeat steps and loop back, and unexpected results can send you down an unexpected path. A wrong hypothesis isn't a failure; it's information that brings you closer to the right answer.</p>
+  </div>
+
+  <h3>The three kinds of variables</h3>
+  <dl class="defs">
+    <div class="def"><dt>Independent variable</dt><dd>The variable you <b>change on purpose</b>. Goes on the <b>x-axis</b>.</dd></div>
+    <div class="def"><dt>Dependent variable</dt><dd>The variable you <b>measure</b> &mdash; it's affected by the independent variable. Goes on the <b>y-axis</b>.</dd></div>
+    <div class="def"><dt>Controlled variables (constants)</dt><dd>The variables <b>kept constant</b> so that only the IV can be causing changes in the DV. An experiment where everything except the IV is held constant is called a <b>controlled experiment</b>.</dd></div>
+  </dl>
+  <p><strong>Worked example.</strong> "How does the amount of water added affect how long it takes beans to sprout?" IV = amount of water. DV = length of time for beans to sprout. Controlled variables = amount of sunlight, amount and type of soil, temperature, bean variety, container size.</p>
+
+  <h3>Control group vs. experimental group</h3>
+  <ul>
+    <li><strong>Control group:</strong> does <em>not</em> receive the treatment. It is the standard of comparison.</li>
+    <li><strong>Experimental group(s):</strong> receive the treatment. You can have several at different levels.</li>
+  </ul>
+  <div class="tbl-scroll">
+    <table>
+      <caption>Worked scenarios from class</caption>
+      <thead><tr><th>Scenario</th><th>Control group</th><th>Experimental group(s)</th></tr></thead>
+      <tbody>
+        <tr><td>Does water amount affect bean sprouting?</td><td>Beans with no water added</td><td>Beans with 10 mL, 20 mL, 30 mL&hellip;</td></tr>
+        <tr><td>Do high-protein diets affect mouse weight?</td><td>Mice on the standard diet</td><td>Mice on the high-protein diet</td></tr>
+        <tr><td>Does salt concentration affect seed germination?</td><td>Seeds soaked in water, no salt</td><td>Seeds soaked in varying salt concentrations</td></tr>
+        <tr><td>Does fertilizer enhance corn growth?</td><td>Corn with no fertilizer added</td><td>Corn with fertilizer added</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Writing a hypothesis</h3>
+  <p>A <em class="term">hypothesis</em> is a scientist's educated guess answering the question. It must:</p>
+  <ol>
+    <li><strong>Include both the independent and dependent variables.</strong></li>
+    <li><strong>Be testable.</strong></li>
+    <li><strong>Be falsifiable</strong> &mdash; it has to be possible for the answer to come back "no."</li>
+  </ol>
+  <div class="note trap">
+    <span class="lbl">The classic trick question</span>
+    <p>Which are required for a hypothesis? <em>(A) written in "If&hellip;then&hellip;" format, (B) testable, (C) can be proven right, (D) can be proven wrong.</em> &mdash; The answer is <strong>B and D</strong>. "If&hellip;then&hellip;" is a helpful format, <em>not</em> a requirement. And you can <strong>never prove a hypothesis right</strong>; you can only gather evidence that <em>supports</em> it. You can only prove one wrong.</p>
+  </div>
+  <p>Why <em>"People behave more immorally when there are fewer rules"</em> fails: "immorally" isn't measurable and "fewer rules" isn't defined, so nothing here is testable. Fix it by naming a measurable DV and a specific IV &mdash; e.g. <em>"If a posted rule against taking extra candy is removed, then the average number of candies each person takes will increase."</em></p>
+  <p><strong>Model hypotheses, in the format that shows the IV and DV clearly:</strong></p>
+  <ul>
+    <li><em>Plants kept at different temperatures for 2 weeks:</em> "If bean plants are grown at higher temperatures, then their height gain over two weeks will increase."</li>
+    <li><em>Asthma drug vs. placebo:</em> "If asthma patients take the drug daily for one month, then their clinical assessment scores will improve more than those of patients taking the placebo."</li>
+  </ul>
+</section>
+
+<!-- ============ 07 PRACTICE ============ -->
+<section id="practice">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Practice Set</h2></div>
+  <p class="lede">Twenty questions drawn from the Jeopardy board and the lesson slides. Answer out loud or on paper <em>before</em> you click &mdash; recognition feels like knowing and isn't.</p>
+
+  <details class="q"><summary><span class="qn">01</span><span>Name the science skill: grouping things based on similarities.</span></summary>
+    <div class="ans"><p class="key">Classification.</p></div></details>
+
+  <details class="q"><summary><span class="qn">02</span><span>Name the science skill: making an educated guess about what will happen based on background knowledge or context.</span></summary>
+    <div class="ans"><p class="key">Prediction.</p><p>Don't confuse it with hypothesis &mdash; a hypothesis is the written, testable version used in an experiment.</p></div></details>
+
+  <details class="q"><summary><span class="qn">03</span><span>Describe both components &mdash; the easier one and the harder one &mdash; of interpretation.</span></summary>
+    <div class="ans"><p class="key">(1) Identifying trends in the results. (2) Determining what those trends might mean.</p></div></details>
+
+  <details class="q"><summary><span class="qn">04</span><span>You discover a small fire in the lab. List, in order, what you do.</span></summary>
+    <div class="ans"><p class="key">Notify people in the area (yell) &rarr; sound the fire alarm if others in the building need warning &rarr; only attempt to extinguish if it is safe to do so &rarr; evacuate the immediate area &rarr; shut the lab and corridor doors.</p></div></details>
+
+  <details class="q"><summary><span class="qn">05</span><span>What does PASS stand for, and how far from the fire do you stand?</span></summary>
+    <div class="ans"><p class="key">Pull, Aim, Squeeze, Sweep &mdash; standing 6 to 8 feet away, back to an unobstructed exit.</p><p>Aim <em>low</em>, at the base of the fire. Sweep side to side and front to back. Never assume it's out.</p></div></details>
+
+  <details class="q"><summary><span class="qn">06</span><span>What are ALL the required elements of a data table? Be specific.</span></summary>
+    <div class="ans"><p class="key">Title (naming the independent and dependent variables) &middot; Headings with units for both IV and DV &middot; Trials in separate columns &middot; Data recorded to the correct precision, with the same number of decimal places throughout.</p></div></details>
+
+  <details class="q"><summary><span class="qn">07</span><span>A graph plots "Height" on the x-axis and "Fertilizer concentration (mg/L)" on the y-axis. Name the two errors.</span></summary>
+    <div class="ans"><p class="key">(1) The axes are swapped &mdash; the independent variable (fertilizer concentration) belongs on the x-axis and the dependent variable (height) on the y-axis. (2) Height has no unit.</p></div></details>
+
+  <details class="q"><summary><span class="qn">08</span><span>Which graph for each: (a) cholesterol over a 10-year period, (b) leg length vs. antenna length in crickets, (c) percentage of the class that is male vs. female, (d) salaries of four professions?</span></summary>
+    <div class="ans"><p class="key">(a) Line graph &mdash; change over time. (b) Scatter plot &mdash; two numeric variables. (c) Pie chart &mdash; parts of a whole. (d) Bar graph &mdash; comparing categories.</p></div></details>
+
+  <details class="q"><summary><span class="qn">09</span><span>You measure a plant's oxygen production every hour for 24 hours. What graph, and what goes on each axis?</span></summary>
+    <div class="ans"><p class="key">A line graph. X-axis: time (hours). Y-axis: oxygen production (with its unit).</p></div></details>
+
+  <details class="q"><summary><span class="qn">10</span><span>Explain the difference between correlation and relationship, using "positive" and "direct" in your answer.</span></summary>
+    <div class="ans"><p class="key">Correlation describes the slope on the graph: positive slopes up to the right, negative slopes down to the right. Relationship describes how the variables move together: direct means both increase or both decrease, inverse means one increases while the other decreases.</p></div></details>
+
+  <details class="q"><summary><span class="qn">11</span><span>Why do data visualization experts dislike pie charts?</span></summary>
+    <div class="ans"><p class="key">Because the human brain struggles to compare angles.</p><p>You can usually spot first place, but not second or third. A sorted, single-color bar chart shows the same data with the ranking immediately readable.</p></div></details>
+
+  <details class="q"><summary><span class="qn">12</span><span>Liters are the base unit of ______. Meters are the base unit of ______. Grams are the base unit of ______.</span></summary>
+    <div class="ans"><p class="key">Volume (capacity) &middot; distance (length) &middot; mass.</p></div></details>
+
+  <details class="q"><summary><span class="qn">13</span><span>Convert: 789.1 decimeters to dekameters.</span></summary>
+    <div class="ans"><p class="key">7.891 dekameters.</p><p>Deci &rarr; base &rarr; deka is two steps up the ladder, so divide by 100 (move the decimal two places left).</p></div></details>
+
+  <details class="q"><summary><span class="qn">14</span><span>Convert: 4,201 hg to milligrams.</span></summary>
+    <div class="ans"><p class="key">420,100,000 mg.</p><p>Hecto &rarr; milli is five steps down: &times;10 five times, so move the decimal five places right.</p></div></details>
+
+  <details class="q"><summary><span class="qn">15</span><span>Your raw measurements each have two decimal places and the calculated average reads 638.6794125 m on your calculator. How do you report it?</span></summary>
+    <div class="ans"><p class="key">638.68 m.</p><p>The rule that matters: averages are reported to the same precision as the measurements they came from.</p></div></details>
+
+  <details class="q"><summary><span class="qn">16</span><span>A graduated cylinder's markings are every 1 mL and the meniscus sits exactly on the 38 line. What do you write down, and why?</span></summary>
+    <div class="ans"><p class="key">38.0 mL.</p><p>You measure, then estimate one decimal place past what you can clearly see &mdash; so the estimated digit (here, 0) must be written. Read from the <em>bottom</em> of the meniscus, at eye level.</p></div></details>
+
+  <details class="q"><summary><span class="qn">17</span><span>Five shots land in a tight cluster in the top-left corner of the target. Accurate, precise, both, or neither?</span></summary>
+    <div class="ans"><p class="key">Precise but not accurate.</p><p>Precision = consistency (close to each other). Accuracy = closeness to the correct value. Valid, credible data needs both.</p></div></details>
+
+  <details class="q"><summary><span class="qn">18</span><span>An atom has 3 protons and 4 electrons. What is its charge, and what element is it?</span></summary>
+    <div class="ans"><p class="key">Charge &minus;1. It's an ion of lithium &mdash; the element is set by the 3 protons, not by the electrons.</p></div></details>
+
+  <details class="q"><summary><span class="qn">19</span><span>Explain the difference between ionic and covalent bonds. Which one forms molecules?</span></summary>
+    <div class="ans"><p class="key">Ionic: one atom takes an electron from another, creating two oppositely-charged ions that attract each other. Covalent: atoms share electrons and their charges don't change. Covalent bonds form molecules.</p></div></details>
+
+  <details class="q"><summary><span class="qn">20</span><span>Design an investigation: which M&amp;M color melts the fastest? Give a hypothesis, the method, and all three variable types.</span></summary>
+    <div class="ans">
+      <p class="key">Hypothesis: "If M&amp;Ms of different shell colors are heated under identical conditions, then the darker-shelled M&amp;Ms will melt in less time."</p>
+      <p><strong>Method:</strong> place one M&amp;M of each color on the same surface at the same distance from the same heat source; time each one until the shell first breaks or the chocolate flows; repeat for five trials per color and average.</p>
+      <p><strong>IV:</strong> M&amp;M shell color. <strong>DV:</strong> time taken to melt (seconds). <strong>Controlled:</strong> heat source and its distance, surface material, starting temperature of the candy, M&amp;M size/type, room temperature, the person judging "melted."</p>
+    </div></details>
+</section>
+
+<!-- ============ 08 CHECKLIST ============ -->
+<section id="checklist">
+  <div class="sec-head"><span class="sec-num">08</span><h2>Final Check</h2></div>
+  <p class="lede">These are your teacher's own objectives from the Summary Sheet, verbatim. If you can't do one without looking, go back to that section.</p>
+  <div class="check">
+    <label><input type="checkbox"><span>Identify and explain the main science skills that should be used in high school.</span></label>
+    <label><input type="checkbox"><span>Understand and abide by lab safety rules and behavioral expectations.</span></label>
+    <label><input type="checkbox"><span>Create tables and graphs with all required elements, using the appropriate formatting for scientific data.</span></label>
+    <label><input type="checkbox"><span>Identify different types of graphs and determine which to use based on the nature of the data.</span></label>
+    <label><input type="checkbox"><span>Identify and interpret trends from a data table or graph.</span></label>
+    <label><input type="checkbox"><span>Measure data accurately and to the correct precision.</span></label>
+    <label><input type="checkbox"><span>Report calculated data to the correct precision.</span></label>
+    <label><input type="checkbox"><span>Convert between metric units.</span></label>
+    <label><input type="checkbox"><span>Describe the makeup of atoms, including the locations and masses of the subatomic particles.</span></label>
+    <label><input type="checkbox"><span>Correctly interpret chemical formulas and identify reactants and products in a chemical reaction equation.</span></label>
+    <label><input type="checkbox"><span>Describe the steps of the scientific method &mdash; observation, question, hypothesis, experimentation, data collection, analysis, communication &mdash; and apply them.</span></label>
+    <label><input type="checkbox"><span>Identify the components of a well-designed experiment: hypothesis, IV, DV, controlled variables, control group, experimental group.</span></label>
+    <label><input type="checkbox"><span>Write a clear and testable hypothesis.</span></label>
+  </div>
+
+  <h3>Vocabulary sweep &mdash; all 41 terms</h3>
+  <p>Cover the definitions and go down the list. Anything you hesitate on, look up in the section above.</p>
+  <div class="tbl-scroll">
+    <table>
+      <caption>Terms to Know &mdash; Unit 1 Summary Sheet</caption>
+      <thead><tr><th>Skills &amp; data</th><th>Graphs &amp; trends</th><th>Measurement</th><th>Chemistry</th><th>Experiments</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Observation<br>Classification<br>Measurement<br>Prediction<br>Interpretation<br>Communication<br>Data table<br>Qualitative vs. quantitative<br>Raw vs. derived data<br>Trials<br>Average</td>
+          <td>Bar graph<br>Line graph<br>Pie chart<br>Scatter plot<br>X-axis<br>Y-axis<br>Positive vs. negative correlation<br>Direct vs. inverse relationship</td>
+          <td>Precision vs. accuracy<br>Metric units (meters, grams, liters)<br>Prefixes milli&ndash; through kilo&ndash;</td>
+          <td>Chemistry<br>Element<br>Atom<br>Nucleus<br>Proton<br>Neutron<br>Electron<br>Electron cloud<br>Molecule<br>Covalent bond<br>Ionic bond<br>Ion<br>Property</td>
+          <td>Scientific method<br>Hypothesis<br>Independent variable<br>Dependent variable<br>Controlled variable (constant)<br>Control group<br>Experimental group</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <p>Compiled from the Unit 1 lesson slides, the Summary Sheet, the Graph Choice Chart, the Lab Safety Agreement, the Fire Safety guidelines, the Lab Participation Rubric, and the Unit 1 Jeopardy review game.</p>
+</footer>
+</div>
+
+<div class="view v-quiz" id="view-quiz">
 <div class="bar">
   <div class="shell bar-in">
-    <span class="brand"><span class="dot"></span>FIELD GUIDE <span class="mono" style="color:var(--ink-3);font-weight:400;font-size:12px;margin-left:6px">/ BIO U1</span></span>
+    <span class="brand"><span class="dot"></span>DRILL BENCH<span class="mono" style="color:var(--ink3);font-weight:400;font-size:12px">/ BIO U1</span></span>
     <span class="chip hide" id="chipCount"></span>
     <span class="chip hide" id="chipScore"></span>
     <span class="chip streak hide" id="chipStreak"></span>
     <button class="icobtn hide" id="btnQuit">Quit</button>
-    <button class="icobtn" id="btnTheme" title="Toggle light / dark">&#x25D0;</button>
   </div>
   <div class="prog"><i id="progBar"></i></div>
 </div>
 
 <!-- ===================== HOME ===================== -->
-<div id="home">
+<div id="qzHome">
   <div class="shell hero">
-    <div class="kick">Biology 26/27 &#xB7; Unit 1 Field Guide</div>
-    <h1>Drill Bench.<span class="sub">239 multiple-choice questions on high school science skills, lab safety, tables &amp; graphs, measurement, chemistry, and experimental design.</span></h1>
+    <div class="kick">Biology 26/27 &#xB7; Unit 1 Summative Prep</div>
+    <h1>Drill until it's<br>automatic.<span class="sub">239 multiple-choice questions on high school science skills, lab safety, tables &amp; graphs, measurement, chemistry, and experimental design.</span></h1>
     <p>Every question gives you the answer and the reasoning the moment you commit. Wrong answers are collected so you can run them again.</p>
     <div class="statline">
       <div class="stat"><b id="statTotal">239</b><span>Questions</span></div>
@@ -307,7 +1085,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink-3);f
 </div>
 
 <!-- ===================== QUIZ ===================== -->
-<div id="quiz" class="hide">
+<div id="qzPlay" class="hide">
   <div class="shell quizwrap">
     <div class="qmeta" id="qmeta"></div>
     <h2 class="qtext" id="qtext"></h2>
@@ -318,7 +1096,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink-3);f
 </div>
 
 <!-- ===================== RESULTS ===================== -->
-<div id="results" class="hide">
+<div id="qzRes" class="hide">
   <div class="shell res">
     <div class="scorehead">
       <div class="ring" id="ring"></div>
@@ -333,39 +1111,117 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--ink-3);f
     <div id="missedWrap"></div>
   </div>
 </div>
+</div>
 
 <script>
-// Mock data sample (truncated for brevity, replace with full array from Source 1 if needed)
-const BANK = [{"t":"skills","d":1,"q":"Which science skill is defined as using your five senses to notice both the big picture and the fine details?","o":["Observation","Interpretation","Classification","Prediction"],"a":0,"e":"Observation is described as the most basic science skill \u2014 using your senses to take in both the big picture and the fine details."},
-{"t":"safety","d":1,"q":"You break a beaker during a lab. What do you do?","o":["Sweep it up quickly and continue","Tell the teacher immediately and do not pick up the broken glass","Put the pieces in your bag to replace later","Rinse the pieces and put them back on the shelf"],"a":1,"e":"Report any accident, injury, or broken equipment to the teacher immediately, and never pick up hot or broken glassware yourself."}];
 
-// Adjusted slightly to match the new color aesthetics natively
+/* ============================================================
+   MATERIALS  -  add a line here to put something new on the home page.
+   href can be an internal section ("#/guide", "#/quiz") or any URL.
+   ============================================================ */
+var MATERIALS = [
+  {subject:"Biology", kind:"Guide", title:"Unit 1 Field Guide", href:"#/guide"},
+  {subject:"Biology", kind:"Quiz",  title:"Unit 1 Drill Bench", href:"#/quiz"}
+  // ,{subject:"Chemistry", kind:"Notes", title:"Stoichiometry notes", href:"https://..."}
+];
+
+(function(){
+  var DOT=["#C2643C","#3F7D58","#3B5BA5","#8A5AA8","#B0863A","#3E8E8E","#A64A6B","#6B7A45"];
+  function dotFor(s){var h=0;s=String(s||"");for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return DOT[h%DOT.length];}
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+
+  var subs=[], seen={};
+  MATERIALS.forEach(function(m){var s=m.subject||"Unfiled";if(!seen[s]){seen[s]=1;subs.push(s);}});
+  subs.sort(function(a,b){return a.localeCompare(b);});
+
+  var n=MATERIALS.length;
+  document.getElementById("homeCount").textContent =
+    n+(n===1?" material":" materials")+" \u00b7 "+subs.length+(subs.length===1?" subject":" subjects");
+
+  var list=document.getElementById("homeList");
+  subs.forEach(function(s){
+    var rows=MATERIALS.filter(function(m){return (m.subject||"Unfiled")===s;})
+                      .sort(function(a,b){return (a.title||"").localeCompare(b.title||"");});
+    var g=document.createElement("section"); g.className="group";
+    g.innerHTML='<div class="ghead"><span class="sdot" style="background:'+dotFor(s)+'"></span>'+
+                esc(s)+'<span class="n">'+rows.length+'</span></div>';
+    rows.forEach(function(m){
+      var internal=/^#\//.test(m.href||"");
+      var r=document.createElement("div"); r.className="row";
+      r.innerHTML='<a href="'+esc(m.href||"#/")+'"'+(internal?"":' target="_blank" rel="noopener noreferrer"')+'>'+
+                  esc(m.title)+'</a>'+
+                  (m.kind?'<span class="kind">'+esc(m.kind)+'</span>':"")+
+                  (internal?"":'<span class="ext" title="Opens in a new tab">\u2197</span>');
+      g.appendChild(r);
+    });
+    list.appendChild(g);
+  });
+})();
+
+/* ---------------- theme ---------------- */
+document.getElementById("themeBtn").onclick=function(){
+  var r=document.documentElement;
+  var dark=r.getAttribute("data-theme")==="dark" ||
+    (!r.getAttribute("data-theme") && matchMedia("(prefers-color-scheme:dark)").matches);
+  r.setAttribute("data-theme", dark?"light":"dark");
+  try{ localStorage.setItem("studyTheme", dark?"light":"dark"); }catch(e){}
+};
+try{ var _t=localStorage.getItem("studyTheme"); if(_t) document.documentElement.setAttribute("data-theme",_t); }catch(e){}
+
+/* ---------------- router ---------------- */
+(function(){
+  var VIEWS={"/":"view-home","/guide":"view-guide","/quiz":"view-quiz"};
+  function show(route){
+    if(!VIEWS[route]) route="/";
+    Object.keys(VIEWS).forEach(function(r){
+      document.getElementById(VIEWS[r]).classList.toggle("on", r===route);
+    });
+    [].forEach.call(document.querySelectorAll(".tab"),function(a){
+      a.classList.toggle("on", a.dataset.route===route);
+      if(a.dataset.route===route) a.setAttribute("aria-current","page");
+      else a.removeAttribute("aria-current");
+    });
+    document.title = route==="/guide" ? "Field Guide \u00b7 Study"
+                   : route==="/quiz"  ? "Drill Bench \u00b7 Study" : "Study";
+  }
+  function fromHash(){
+    var h=location.hash;
+    if(h.charAt(0)==="#" && h.charAt(1)==="/") return h.slice(1);
+    return null;               /* in-page anchors (#skills, #chem) are left alone */
+  }
+  window.addEventListener("hashchange",function(){
+    var r=fromHash();
+    if(r===null) return;
+    show(r);
+    window.scrollTo(0,0);
+  });
+  show(fromHash() || "/");
+})();
+
+</script>
+<script>
+(function(){
+
+const BANK = [{"t":"skills","d":1,"q":"Which science skill is defined as using your five senses to notice both the big picture and the fine details?","o":["Observation","Interpretation","Classification","Prediction"],"a":0,"e":"Observation is described as the most basic science skill \u2014 using your senses to take in both the big picture and the fine details."},{"t":"skills","d":1,"q":"Grouping things based on similarities is which science skill?","o":["Communication","Classification","Observation","Measurement"],"a":1,"e":"Classification allows us to categorize the world, from counting a bug's legs to naming exact species."},{"t":"skills","d":1,"q":"Making an educated guess about what will happen based on background knowledge or context is which skill?","o":["Interpretation","Observation","Prediction","Classification"],"a":2,"e":"Prediction uses previous observations and critical thinking to guess what will happen in an experiment or scenario."},{"t":"skills","d":2,"q":"Interpretation has two components. Which pair correctly describes them?","o":["Recording the outcome, then writing it down neatly","Identifying trends, then determining what those trends might mean","Measuring accurately, then converting the units","Observing carefully, then classifying the results"],"a":1,"e":"The easier half is identifying trends; the harder half is working out what those trends actually mean."},{"t":"skills","d":2,"q":"Which science skill is described as leading most directly to the questions you then use scientific processes to answer?","o":["Observation","Communication","Measurement","Controlling variables"],"a":0,"e":"Observing the world often leads to questions you can use scientific processes to try to answer."},{"t":"skills","d":2,"q":"Which skill involves identifying, tracking, and altering factors so you can find out how results change?","o":["Interpretation","Classification","Prediction","Controlling variables"],"a":3,"e":"Controlling variables means understanding the different variables in an experiment and being able to alter them to find out how the results change."},{"t":"skills","d":2,"q":"According to the science skills list, which THREE of these are ways scientists communicate findings?","o":["Words, models, and graphs","Guesses, feelings, and opinions","Rulers, beakers, and balances","Trials, averages, and errors"],"a":0,"e":"Communication means clearly conveying findings using words, models, and graphs."},{"t":"skills","d":3,"q":"Why is communication considered a science skill rather than just a courtesy?","o":["It is required by lab safety rules","It makes knowledge accessible to other scientists and stakeholders so it can influence policy, medicine, and progress","It is the only way to prove a hypothesis is correct","It replaces the need for data tables"],"a":1,"e":"Communicating findings makes knowledge accessible so it can influence policy, medicine, and societal progress \u2014 and it also helps you absorb and analyze the information yourself."},{"t":"skills","d":3,"q":"A student counts that a beetle has six legs, then places it in the group 'insects.' Which skill is the SECOND step?","o":["Observation","Classification","Prediction","Measurement"],"a":1,"e":"Counting the legs is observation; sorting the beetle into a category based on that similarity is classification."},{"t":"skills","d":2,"q":"Which skill does the curriculum say 'begins by learning how to use tools like a ruler or beaker precisely and accurately'?","o":["Observation","Classification","Measurement","Interpretation"],"a":2,"e":"Measurement is a fundamental skill, and it starts with learning to use basic tools correctly before moving on to advanced equipment."},{"t":"skills","d":3,"q":"Which of these is NOT one of the seven science skills listed for this unit?","o":["Memorization","Classification","Interpretation","Controlling variables"],"a":0,"e":"The seven are observation, classification, measurement, prediction, controlling variables, interpretation, and communication."},{"t":"skills","d":3,"q":"A student looks at a graph her lab partner made and works out that plant height rises with fertilizer but then drops off. Which skill is she using?","o":["Communication","Observation","Interpretation","Prediction"],"a":2,"e":"Analyzing results, identifying the trend, and thinking about what the pattern means is interpretation."},{"t":"skills","d":2,"q":"Which skill is described as requiring 'critical thinking abilities to guess what will happen, based on known or assumed information'?","o":["Prediction","Interpretation","Classification","Communication"],"a":0,"e":"That is the definition of prediction given in the Lesson 1 slides."},{"t":"skills","d":3,"q":"A student writes: 'The solution turned cloudy after 42 seconds.' Which two skills does this single sentence demonstrate?","o":["Prediction and classification","Observation and measurement","Interpretation and communication","Classification and controlling variables"],"a":1,"e":"'Turned cloudy' is a sensory observation; '42 seconds' is a measurement made with a tool."},{"t":"skills","d":3,"q":"What is the main difference between a prediction and a hypothesis?","o":["A prediction must be written in 'If\u2026then\u2026' format; a hypothesis must not","A hypothesis is a guess; a prediction is a proven fact","A prediction is an educated guess about what will happen; a hypothesis is the testable statement that guides an experiment and names the IV and DV","There is no difference \u2014 the terms are interchangeable"],"a":2,"e":"Both involve informed guessing, but a hypothesis is the formal, testable statement that includes the independent and dependent variables and guides the experiment."},{"t":"skills","d":2,"q":"Which skill would a taxonomist naming a newly found species be using most directly?","o":["Measurement","Classification","Communication","Prediction"],"a":1,"e":"Classification can be as complex as noting the exact species of a plant or animal."},{"t":"skills","d":2,"q":"Which pair of science skills is most directly involved in deciding what to hold constant during an experiment?","o":["Communication and interpretation","Observation and classification","Controlling variables and prediction","Measurement and communication"],"a":2,"e":"You predict how results would change, then control the variables so only the one you want to test can affect the outcome."},{"t":"skills","d":1,"q":"Which skill do you use when presenting your findings to the class with a poster and a graph?","o":["Communication","Interpretation","Observation","Classification"],"a":0,"e":"Communication covers words, models, and graphs \u2014 including presentations."},{"t":"skills","d":3,"q":"Which statement about observation is TRUE according to the unit?","o":["Observation only involves sight","Observation is the most advanced science skill","Observation involves using your senses to see both the big picture and the fine details","Observation should be avoided because it is subjective"],"a":2,"e":"Observation is explicitly the most basic skill, and it involves the big picture and the fine details."},{"t":"skills","d":2,"q":"Students eventually 'use more complex measurement skills using math equations and advanced equipment.' This describes the development of which skill?","o":["Interpretation","Measurement","Prediction","Communication"],"a":1,"e":"Measurement starts with basic tools and grows into equations and advanced equipment."},{"t":"skills","d":3,"q":"A researcher records the outcome of an experiment but cannot explain what the pattern means. Which skill is she missing?","o":["Measurement","Observation","Interpretation","Classification"],"a":2,"e":"'It's one thing to record the outcome of an experiment, but interpreting the results is harder.'"},{"t":"skills","d":2,"q":"Which of these is a QUALITATIVE observation?","o":["The leaf is 7.2 cm long","The leaf has a jagged edge","The leaf weighs 0.4 g","There are 12 leaves"],"a":1,"e":"Qualitative observations are descriptive and non-numerical; the other three are all numbers from tools or counting."},{"t":"skills","d":3,"q":"Which sequence best matches how the science skills typically build on one another?","o":["Communication \u2192 measurement \u2192 observation \u2192 prediction","Observation \u2192 question \u2192 prediction \u2192 controlled experiment \u2192 interpretation \u2192 communication","Prediction \u2192 observation \u2192 communication \u2192 classification","Interpretation \u2192 observation \u2192 measurement \u2192 prediction"],"a":1,"e":"Observation generates questions, which lead to predictions, controlled experiments, interpretation, and finally communication of what you found."},{"t":"skills","d":2,"q":"'Learning classification allows us to _____ our world.'","o":["measure","categorize","predict","communicate"],"a":1,"e":"Classification is about categorizing the world by similarities."},{"t":"skills","d":3,"q":"Which science skill most directly protects an experiment from producing results you cannot explain?","o":["Communication","Controlling variables","Classification","Observation"],"a":1,"e":"If more than one variable changes, you cannot tell which one caused the effect \u2014 controlling variables prevents that."},{"t":"safety","d":1,"q":"You break a beaker during a lab. What do you do?","o":["Sweep it up quickly and continue","Tell the teacher immediately and do not pick up the broken glass","Put the pieces in your bag to replace later","Rinse the pieces and put them back on the shelf"],"a":1,"e":"Report any accident, injury, or broken equipment to the teacher immediately, and never pick up hot or broken glassware yourself."},{"t":"safety","d":1,"q":"According to the KISJ Science Lab Safety Agreement, eating and drinking in the lab is\u2026","o":["Allowed if the lab has no chemicals out","Allowed with teacher permission","Forbidden","Allowed only for water"],"a":2,"e":"Rule 5: eating and drinking in the lab is forbidden. Never taste or smell anything unless instructed."},{"t":"safety","d":2,"q":"How should you treat the chemicals used in a school lab?","o":["As harmless, since school chemicals are diluted","As dangerous \u2014 do not touch, taste, smell, or mix them unless directed","As dangerous only if they have a warning label","As safe once your teacher has handled them"],"a":1,"e":"Rule 13: consider ALL chemicals used in the lab to be dangerous."},{"t":"safety","d":1,"q":"When are goggles or safety glasses required?","o":["Only when using fire","Whenever indicated \u2014 no exceptions","Only if you don't wear contact lenses","Only during chemistry labs"],"a":1,"e":"Rule 6: wear goggles or glasses when indicated, with no exceptions. You may also be asked to wear an apron and gloves."},{"t":"safety","d":2,"q":"Which set of clothing choices meets lab dress requirements?","o":["Hair tied back, no dangling jewelry, fitted clothing","Loose sleeves, hair down, small hoop earrings","Baggy hoodie, hair in face, no jewelry","Long necklace, hair tied back, fitted shirt"],"a":0,"e":"Dress properly: tie back hair, no dangling jewelry, and no loose or baggy clothing."},{"t":"safety","d":2,"q":"Where do backpacks go during a lab?","o":["Under your stool","On the lab bench beside you","In the aisle where you can reach them","At the front of the room, out of the aisles"],"a":3,"e":"Rule 7: keep the work area and aisles clear \u2014 put backpacks in front of the room."},{"t":"safety","d":2,"q":"When may you pour a liquid down the sink?","o":["Whenever it looks like water","Only when instructed to do so","At the end of every lab","Only if it is not a chemical"],"a":1,"e":"Rule 11: never pour anything down the sink unless instructed to do so."},{"t":"safety","d":2,"q":"What is the correct way to use a scalpel or scissors in the lab?","o":["Cut toward your body for better control","Cut away from your body","Cut over the sink","Ask a partner to hold the specimen while you cut toward them"],"a":1,"e":"Rule 14: always cut away from your body."},{"t":"safety","d":1,"q":"How should you move around a science lab?","o":["Walk \u2014 always","Jog only if you're late","Move quickly to save time","Any way, as long as you're careful"],"a":0,"e":"Rule 2: move in a calm, safe manner. No playing, running, or goofing around, ever. Always walk."},{"t":"safety","d":2,"q":"Before a lab begins, how many building exits should you know the location of?","o":["One","Two, not including elevators","Two, including elevators","As many as possible"],"a":1,"e":"Fire safety guidelines: know the location of two exits from the building, not including elevators."},{"t":"safety","d":1,"q":"In the PASS procedure, what does the first S stand for?","o":["Sweep","Spray","Squeeze","Stand back"],"a":2,"e":"P-A-S-S: Pull, Aim, Squeeze, Sweep. Squeeze the handle to discharge the extinguishing agent."},{"t":"safety","d":2,"q":"When aiming a fire extinguisher, where do you direct the spray?","o":["At the top of the flames","At the base of the fire","At the ceiling above the fire","In a circle around the fire"],"a":1,"e":"Aim LOW \u2014 direct the chemical agent at the base of the fire, not at the flames."},{"t":"safety","d":2,"q":"How far from the fire should you stand when using an extinguisher?","o":["1 to 2 feet","3 to 4 feet","6 to 8 feet","15 to 20 feet"],"a":2,"e":"Stand six to eight feet from the fire, with your back to an unobstructed exit."},{"t":"safety","d":2,"q":"What does the final S in PASS tell you to do?","o":["Sweep side to side and front to back","Spray straight down","Stop once flames disappear","Shout for help"],"a":0,"e":"Sweep from side to side and from front to back."},{"t":"safety","d":3,"q":"You have used an extinguisher and the flames are gone. What should you do next?","o":["Return the extinguisher to its bracket and resume the lab","Assume the fire is out and clean up","Never assume the fire is out \u2014 watch for re-ignition and wait for the fire department","Refill the extinguisher yourself"],"a":2,"e":"Never assume the fire has been extinguished. Watch for re-ignition and wait for the fire department to respond."},{"t":"safety","d":3,"q":"You discover a fire in the lab. What is the FIRST thing you should do?","o":["Grab the extinguisher and start fighting it","Notify other people in the area \u2014 this is an appropriate time to yell","Close all the doors","Find your phone to call for help"],"a":1,"e":"Notify people in the area first (yelling is appropriate here), then alarms, then only attempt to extinguish if it is safe."},{"t":"safety","d":3,"q":"When evacuating a lab fire, what should you do with the doors?","o":["Prop them open so firefighters can get in","Shut the lab doors and close the corridor doors","Lock them","Leave them exactly as they are"],"a":1,"e":"Shut the lab doors and close the corridor doors as you evacuate \u2014 this helps contain the fire."},{"t":"safety","d":2,"q":"Which statement about open flames in a lab is correct?","o":["They may be left briefly while you fetch materials","They should never be left unattended","They are safe once the Bunsen burner is on the yellow flame","They only need supervision when chemicals are nearby"],"a":1,"e":"Fires and processes that use fire should never be left unattended, and open flames deserve extreme caution."},{"t":"safety","d":3,"q":"You arrive to lab in loose sleeves and open shoes. What happens?","o":["You are admitted but lose points at the end","You are NOT admitted to the lab; you may change and return within 10 minutes or take an alternative assignment and lose participation points","You must sit at the back but may still participate","Nothing, as long as you wear goggles"],"a":1,"e":"Students with improper lab attire will not be admitted. They may change and return within 10 minutes; otherwise they get an alternative assignment and lose participation points."},{"t":"safety","d":2,"q":"What happens if you do not complete the assigned pre-lab on time?","o":["Nothing, as long as you do it later","You lose 2 points","You will not be allowed to participate in the lab and must complete an alternative assignment first","You may participate but not use equipment"],"a":2,"e":"The pre-lab is worth 10% of the grade, and without it you are not allowed to participate in the lab activity."},{"t":"safety","d":2,"q":"How many total points is the Lab Participation Rubric worth?","o":["20","21","25","30"],"a":1,"e":"3 (Preparedness) + 10 (Lab Experimentation) + 8 (Lab Completion) = 21 points."},{"t":"safety","d":3,"q":"How many points is the 'Lab Experimentation' section worth, and how is it broken down?","o":["8 points, 4 items at 2 points each","10 points, 5 items at 2 points each","10 points, 2 items at 5 points each","6 points, 3 items at 2 points each"],"a":1,"e":"Lab Experimentation is 10 points total \u2014 five criteria at 2 points each."},{"t":"safety","d":3,"q":"A student performs the experiment without safety glasses. What is the likely deduction?","o":["The whole 21 points","2 points from Lab Experimentation","3 points from Preparedness","1 point from Lab Completion"],"a":1,"e":"The rubric's own example: a student experimenting without safety glasses could have 2 points deducted for missing an item within the Lab Experimentation heading."},{"t":"safety","d":2,"q":"Which of these belongs to the 'Lab Completion' section of the rubric?","o":["Arriving on time in appropriate lab attire","Working effectively with your lab partner","Securing all lab equipment \u2014 burners off, probes in buffer solution","Bringing a pen, pencil, and laptop"],"a":2,"e":"Lab Completion covers waste disposal, cleaning and storing glassware, securing equipment, and clearing and drying the workspace."},{"t":"safety","d":2,"q":"Which of these is part of 'Preparedness' (3 points)?","o":["Disposing of waste properly","Arriving on time, in lab attire, with all materials","Making accurate measurements","Cleaning glassware"],"a":1,"e":"Preparedness = on time, correct attire, ready to experiment and calculate, and all required materials brought."},{"t":"safety","d":2,"q":"What must you do with your hands at the end of every lab?","o":["Wipe them on a paper towel","Rinse them with the nearest solvent","Wash them with soap and water","Nothing, if you wore gloves"],"a":2,"e":"Rule 12: wash hands at the end of lab with soap and water, and keep hands away from face, eyes, and mouth during the lab."},{"t":"safety","d":2,"q":"Which end-of-lab step is required by the safety agreement?","o":["Leave equipment out for the next class","Clean, rinse, and wipe dry all work surfaces and equipment, and return equipment to its proper location","Pour leftover chemicals into one shared waste beaker without asking","Stack glassware in the sink"],"a":1,"e":"Rule 11: clean, rinse, and wipe dry all work surfaces and equipment at the end of the lab and return equipment properly."},{"t":"safety","d":3,"q":"You are not sure what step 4 of the procedure means. What does the safety agreement say to do?","o":["Guess and see what happens","Ask a nearby group instead of interrupting","Ask the teacher \u2014 the agreement explicitly says to ask if directions are unclear","Skip step 4 and come back to it"],"a":2,"e":"Rule 1: listen to and follow all directions carefully, and ask questions if you are not clear or do not understand."},{"t":"safety","d":2,"q":"Which piece of safety information does the lab contract ask each student to disclose?","o":["Whether they wear contact lenses, are colorblind, and have any allergies","Their emergency contact's employer","Their previous science grades","Whether they can swim"],"a":0,"e":"The signature page asks about contact lenses, color blindness, and allergies."},{"t":"safety","d":3,"q":"Which action would violate the safety agreement even though it seems helpful?","o":["Telling the teacher about a small spill","Mixing two leftover solutions to save on waste containers","Tying your hair back before the lab starts","Pushing in your chair when you stand up"],"a":1,"e":"Rule 13: do not mix anything unless directed to do so, and follow directions for handling and disposal."},{"t":"graphs","d":2,"q":"Which list contains ALL four required elements of a data table?","o":["Title, headings with units, columns with trials separated, data to the correct precision","Title, legend, x-axis, y-axis","Headings, colors, a key, and a caption","Title, average, line of best fit, units"],"a":0,"e":"Every data table needs a descriptive title, headings with units, columns with trials in separate columns, and data recorded to the correct and consistent precision."},{"t":"graphs","d":2,"q":"Which title format does the unit teach for a data table?","o":["'Data Table 1'","'The Effect of ____ on ____'","'Results of the Experiment'","'IV vs. DV'"],"a":1,"e":"Titles use words to explain what the data shows and name the IV and DV \u2014 often 'The Effect of ___ on ___', e.g. 'The Effect of Heat on Cricket Chirp Rate'."},{"t":"graphs","d":1,"q":"In a properly built data table, where do the individual trials go?","o":["All in one column, separated by commas","In separate columns","In separate tables","In the title"],"a":1,"e":"Trials must be in separate columns so each measurement is visible."},{"t":"graphs","d":2,"q":"A heading reads 'Air Pressure'. What is missing?","o":["The number of trials","The units \u2014 it should read 'Air Pressure (lbs/cm\u00b2)'","A capital letter","The average"],"a":1,"e":"Headings must state the variable name AND the units of measurement for quantitative data."},{"t":"graphs","d":3,"q":"Raw data in a table is recorded to one decimal place. Your calculator gives an average of 40.58. What do you record?","o":["40.58","40.6","41","40.580"],"a":1,"e":"Averages must be recorded to the same precision as the raw data \u2014 one decimal place here."},{"t":"graphs","d":2,"q":"Why is an average sometimes called 'derived' or 'processed' data?","o":["Because it comes from a derived unit","Because it is not real measured data \u2014 it is a value found only mathematically","Because it is derived from the title","Because it is always less accurate"],"a":1,"e":"Derived data isn't observed; it's calculated. Nobody measured the average directly."},{"t":"graphs","d":2,"q":"Which is an example of RAW data?","o":["The mean height of five plants","The percent increase from trial 1 to trial 5","A single thermometer reading of 32.2 \u00b0C","The slope of a line of best fit"],"a":2,"e":"Raw data is what you actually measured. Averages, percentages, and slopes are all derived."},{"t":"graphs","d":2,"q":"What is a data table?","o":["A graph with numbers instead of pictures","A method for organizing information \u2014 usually numerical \u2014 in a visual, easy-to-understand way","A list of the equipment used in an experiment","A summary of the conclusion"],"a":1,"e":"That is the class definition. The data usually comes from observation or experimentation."},{"t":"graphs","d":3,"q":"In a standard data table, what goes in the far-left column?","o":["The averages","The levels of the independent variable","Trial 1 measurements","The dependent variable's units"],"a":1,"e":"The IV and its levels run down the left; the DV measurements fill the trial columns to the right, with the average at the far right."},{"t":"graphs","d":3,"q":"Which of these is NOT a required element of a data table?","o":["A title naming the variables","Headings with units","A legend explaining the colors used","Data to the correct precision"],"a":2,"e":"Legends belong to graphs when multiple series are shown; the four table requirements are title, headings with units, trial columns, and correct precision."},{"t":"graphs","d":1,"q":"Which graph should you use to show how something changes over time?","o":["Pie chart","Bar graph","Line graph","Scatter plot"],"a":2,"e":"Line graphs show change over time, and multiple lines let you compare data sets."},{"t":"graphs","d":1,"q":"Which graph is best for comparing four different categories when the specific values matter?","o":["Bar graph","Line graph","Pie chart","Scatter plot"],"a":0,"e":"Bar graphs compare different data sets or groups, especially when specific values are important."},{"t":"graphs","d":1,"q":"Which graph shows parts of a whole as percentages?","o":["Scatter plot","Histogram","Pie chart","Line graph"],"a":2,"e":"Pie charts show percentages or parts of a whole; all subgroups must total 100%."},{"t":"graphs","d":2,"q":"Which graph compares two numeric variables to visualize the relationship between many separate data points?","o":["Bar graph","Scatter plot","Pie chart","Stacked bar"],"a":1,"e":"Scatter plots compare two numeric variables and let you see relationships and trends among many separate points."},{"t":"graphs","d":2,"q":"To show how eating vegetables over a 10-year period lowers cholesterol, which graph is best?","o":["Pie chart","Bar graph","Line graph","Scatter plot"],"a":2,"e":"A 10-year period is linear time, so a line graph with time on the x-axis."},{"t":"graphs","d":2,"q":"To compare the leg lengths and antenna lengths of crickets, which graph is best?","o":["Scatter plot","Line graph","Pie chart","Bar graph"],"a":0,"e":"Two numeric variables with many individual data points and no time involved \u2014 that's a scatter plot."},{"t":"graphs","d":2,"q":"To show the percentage of students in a class who are male versus female, which graph is best?","o":["Line graph","Pie chart","Scatter plot","Histogram"],"a":1,"e":"Parts of a whole totalling 100% \u2014 a pie chart (or a stacked bar)."},{"t":"graphs","d":2,"q":"To compare the salaries of a teacher, a veterinarian, a software engineer, and a banker, which graph is best?","o":["Bar graph","Scatter plot","Line graph","Pie chart"],"a":0,"e":"Four separate categories with one summary number each \u2014 a bar graph."},{"t":"graphs","d":3,"q":"You measure a plant's oxygen production every hour for 24 hours. Which variable goes on the x-axis, and with what unit?","o":["Oxygen production, in mL","Time, in hours","Oxygen production, in hours","Time, in mL"],"a":1,"e":"Time is the independent variable, so it goes on the x-axis in hours; oxygen production is the DV on the y-axis."},{"t":"graphs","d":3,"q":"Why do data-visualization experts criticize pie charts?","o":["They cannot show more than two categories","The human brain struggles to compare angles","They require special software","They cannot show percentages"],"a":1,"e":"From the reading: the brain struggles to compare angles, so pie charts make ranking and comparison hard."},{"t":"graphs","d":3,"q":"In the little-league example, what could you see in the bar chart that you could NOT see in the pie chart?","o":["The total number of runs","Which team came second and third","The team names","The number of teams"],"a":1,"e":"The pie chart made first place just about visible, but sorting a single-color bar chart by size immediately revealed second and third."},{"t":"graphs","d":3,"q":"According to the reading, what is data visualization fundamentally about?","o":["Making the graph look attractive","Making data accessible and enabling understanding","Using as many colors as possible","Fitting all the data on one page"],"a":1,"e":"'Data visualisation is about making data more accessible and enabling understanding. If pie charts aren't easy to interpret then they are simply not a good choice.'"},{"t":"graphs","d":2,"q":"Pie charts become especially hard to read when they compare more than about how many categories?","o":["Two","Three","Five","Ten"],"a":2,"e":"Pie charts are especially difficult to read if they compare more than five categories."},{"t":"graphs","d":2,"q":"What does a STACKED bar graph let you show that a plain bar graph does not?","o":["Change over time","The composition of broader categories","The line of best fit","The range of the data"],"a":1,"e":"Stacked bars show how each broader category is composed of subgroups."},{"t":"graphs","d":3,"q":"Your question is: 'What is the range and distribution of incomes in Sudan?' According to the Graph Choice Chart, what do you make?","o":["A pie chart","A frequency plot \u2014 dot plot, box-and-whisker, or histogram","A scatter plot","A stacked bar graph"],"a":1,"e":"Questions about the variability of one group \u2014 range, shape, or center \u2014 call for a frequency plot."},{"t":"graphs","d":3,"q":"Your question is: 'Do cats and dogs have the same average body temperature?' What does the Graph Choice Chart recommend?","o":["A bar graph","A scatter plot","A histogram for each","A pie chart"],"a":0,"e":"You are comparing a single summary number (the mean) for each group \u2014 that's a bar graph."},{"t":"graphs","d":3,"q":"Your question is: 'Which of two solar cars consistently goes the farthest?' What does the Graph Choice Chart recommend?","o":["A single bar graph of the averages","A frequency plot for each car","A pie chart","A line graph"],"a":1,"e":"The word 'consistently' means you care about the variability of all the data points, so make a frequency plot for each group."},{"t":"graphs","d":3,"q":"Your question is 'Is sea level rising?' \u2014 two numeric variables, one of which is linear time. Which graph?","o":["Scatter plot","Line graph with time on the x-axis","Box plot","Pie chart"],"a":1,"e":"Correlation questions that ask about change through linear time become line graphs, with time on the x-axis."},{"t":"graphs","d":3,"q":"According to the Graph Choice Chart, when may you connect the dots on a plot of two numeric variables?","o":["Always, to show the trend","Never \u2014 use a line of best fit instead","Only if one of the variables is linear time","Only if there are fewer than ten points"],"a":2,"e":"Connect dots only if one variable is linear time (days, years). Otherwise show correlation with a line of best fit."},{"t":"graphs","d":2,"q":"Which THREE graphs count as frequency plots?","o":["Bar, line, pie","Dot plot, box-and-whisker plot, histogram","Scatter, line, histogram","Pie, stacked bar, dot plot"],"a":1,"e":"The Graph Choice Chart lists three kinds of frequency plot: dot plot, box-and-whisker plot, and histogram."},{"t":"graphs","d":1,"q":"Which axis carries the independent variable?","o":["The x-axis","The y-axis","Either one","Whichever has more room"],"a":0,"e":"IV on the x-axis, DV on the y-axis. This is one of the most frequently tested rules in the unit."},{"t":"graphs","d":1,"q":"Which axis carries the dependent variable?","o":["The x-axis","The y-axis","Neither \u2014 it goes in the legend","Both"],"a":1,"e":"The dependent variable \u2014 the one you measure \u2014 goes on the y-axis."},{"t":"graphs","d":3,"q":"A graph plots 'Height' on the x-axis and 'Fertilizer concentration (mg/L)' on the y-axis. Name BOTH errors.","o":["Missing title and missing legend","The axes are swapped, and 'Height' has no unit","Wrong graph type and wrong scale","Missing trend line and missing caption"],"a":1,"e":"Fertilizer concentration is the IV so it belongs on the x-axis, and every axis label needs its unit \u2014 'Height (cm)'."},{"t":"graphs","d":2,"q":"Which of these is NOT one of the criteria for an informative graph?","o":["Axes are labeled clearly and correctly","Units are given","The graph uses at least four colors","A legend is present if needed"],"a":2,"e":"The criteria are about correctness and clarity \u2014 fitting graph type, correct axes and scaling, clear labels, units, accurate plotting, a legend if needed, neatness, a title, a trend line where appropriate, and usefulness."},{"t":"graphs","d":2,"q":"On which graph types should a trend line be shown?","o":["Bar graphs and pie charts","Scatter plots and line graphs only","All graphs","Histograms only"],"a":1,"e":"The Graph Choice Chart's criteria list specifies the trend line for scatter plots or line graphs only."},{"t":"graphs","d":2,"q":"What does a POSITIVE correlation look like on a graph?","o":["The slope runs up and to the right","The slope runs down and to the right","The points form a circle","The line is horizontal"],"a":0,"e":"Positive correlation: slope up and to the right. Negative correlation: slope down and to the right."},{"t":"graphs","d":2,"q":"What does a NEGATIVE correlation look like on a graph?","o":["The slope runs up and to the right","The slope runs down and to the right","There is no line at all","The line is vertical"],"a":1,"e":"Data with a downward slope toward the right has a negative correlation. Data can also have no correlation at all."},{"t":"graphs","d":2,"q":"'As the diameter of a pipe increases, water flow through it also increases.' What kind of relationship is this?","o":["Inverse","Direct","No relationship","Negative"],"a":1,"e":"Both variables increase together, so it is a direct relationship (and it would show a positive correlation)."},{"t":"graphs","d":2,"q":"'The more I exercise, the lower my risk of heart disease.' What kind of relationship is this?","o":["Direct","Inverse","No relationship","Positive"],"a":1,"e":"One variable increases while the other decreases \u2014 an inverse relationship, shown as a negative correlation."},{"t":"graphs","d":3,"q":"What is the difference between 'correlation' and 'relationship' as this unit uses the terms?","o":["They mean exactly the same thing","Correlation describes the slope direction on the graph; relationship describes whether the variables move together or oppositely","Correlation applies to bar graphs; relationship applies to line graphs","Correlation is always positive; relationship is always direct"],"a":1,"e":"Positive/negative describes the slope; direct/inverse describes whether both variables move the same way or opposite ways."},{"t":"graphs","d":2,"q":"On a line graph, what does a steep curve indicate?","o":["A slow rate of change","A fast rate of change","An error in the data","A negative correlation"],"a":1,"e":"A steep curve means the dependent variable is changing quickly."},{"t":"graphs","d":2,"q":"What is the purpose of a line of best fit?","o":["To make the graph look neater","To connect every data point exactly","To show the correlation so you can derive unknown data points and make predictions","To mark the average of the y-values"],"a":2,"e":"The line of best fit shows how the data behave, letting you derive unknown points and predict beyond what you measured."},{"t":"graphs","d":2,"q":"What is the advantage of putting multiple lines on the same line graph?","o":["It saves paper","It allows you to compare different groups of data","It removes the need for a legend","It makes the trend line unnecessary"],"a":1,"e":"Multiple lines let you compare two or more sets of data directly on the same axes."},{"t":"graphs","d":3,"q":"In the fertilizer experiment, corn height rose steadily as fertilizer concentration increased. How would you describe the corn result?","o":["The higher the fertilizer concentration, the taller the corn grew","Corn growth was inhibited by fertilizer","Corn growth improved only up to 150 mg/L","Fertilizer had no effect on corn"],"a":0,"e":"For corn plants, the higher the concentration of fertilizer, the taller the plants grew."},{"t":"graphs","d":3,"q":"In the fertilizer experiment, oak seedling growth improved with fertilizer up to a point, then declined. Above what concentration was oak growth inhibited?","o":["100 mg/L","150 mg/L","200 mg/L","250 mg/L"],"a":1,"e":"At concentrations above 150 mg/L, oak seedling growth was inhibited."},{"t":"graphs","d":3,"q":"In the fertilizer experiment, what happened to rose bushes as fertilizer concentration increased?","o":["They grew taller","Their growth was inhibited","They were unaffected","They grew taller then levelled off"],"a":1,"e":"For rose bushes, increasing the concentration of fertilizer inhibited plant growth \u2014 making fertilizer least effective for roses at high concentrations."},{"t":"graphs","d":3,"q":"Corn, oak seedlings, and rose bushes were grown at several fertilizer concentrations. At 100 mg/L, which plant showed the best growth?","o":["Corn","Rose bushes","Oak seedlings","All three were equal"],"a":2,"e":"Oak seedlings showed the best growth at 100 mg/L, before their growth was inhibited at higher concentrations."},{"t":"graphs","d":3,"q":"In the fish-growth bar graph, fish grew to a larger weight in which water, and which sex grew larger?","o":["Tap water; males","Pond water; females","Pond water; males","Tap water; females"],"a":1,"e":"Fish grew larger in pond water, and females grew larger than males (about 6.4 g for females in pond water)."},{"t":"graphs","d":3,"q":"Fish grew to a larger weight in pond water than in tap water. Which explanation for that result is scientifically reasonable?","o":["Tap water may contain chlorine and fluorine that stunt growth, and lacks minerals found in pond water","Pond water is colder, and cold always increases growth","Tap water is heavier than pond water","Fish prefer the taste of pond water"],"a":0,"e":"Those were the two proposed explanations: tap water additives may be toxic, and tap water lacks the minerals and ions that stimulate growth."},{"t":"graphs","d":3,"q":"You have turtle-egg data: 16 \u00b0C = 3 eggs, 18 \u00b0C = 4, 20 \u00b0C = 7, 22 \u00b0C = 11, 24 \u00b0C = 16, 26 \u00b0C = 17. What is the range of the DEPENDENT variable?","o":["16 to 26","3 to 17","1 to 20","16 to 17"],"a":1,"e":"The DV is number of eggs hatched, ranging from 3 to 17. The IV is temperature, ranging from 16 to 26 \u00b0C."},{"t":"graphs","d":3,"q":"What is the FIRST thing you should do when making a graph from a set of given data?","o":["Choose colors","Identify the independent and dependent variables and the range of each","Draw the trend line","Write the legend"],"a":1,"e":"Identify the IV, the DV, and their ranges \u2014 that determines the graph type and the axis scales."},{"t":"graphs","d":2,"q":"What is the difference between a data table and a graph?","o":["A table organizes the numbers themselves; a graph makes the trends and comparisons visible at a glance","A table is used before the experiment; a graph is used after","A graph is more accurate than a table","There is no difference"],"a":0,"e":"Tables organize the data; graphs are a quick way to visualize trends or make comparisons."},{"t":"graphs","d":3,"q":"Which question would you answer with a stacked bar chart rather than a plain bar chart?","o":["How do the median incomes of the US and India compare?","How do Parisians typically commute to work?","Is sea level rising?","How variable are wind speeds in Denmark?"],"a":1,"e":"Commuting modes are subgroups of one whole totalling 100% \u2014 a proportion question, which takes a pie chart or a stacked bar chart."},{"t":"measure","d":1,"q":"'Ms. Clark is 163 cm tall.' Is this quantitative or qualitative?","o":["Quantitative","Qualitative","Both","Neither"],"a":0,"e":"Quantitative data is based on numbers \u2014 measurements from tools, or counting."},{"t":"measure","d":1,"q":"'Mr. Palmer is very funny.' Is this quantitative or qualitative?","o":["Quantitative","Qualitative","Both","Neither"],"a":1,"e":"Qualitative data is based on description and interpretation, and is not numerical."},{"t":"measure","d":2,"q":"Which of these is a QUALITATIVE measurement?","o":["Oregon is 8824.03 km from Jeju","Timoth\u00e9e Chalamet has black hair","The beaker holds 250 mL","There are 14 students in the group"],"a":1,"e":"Hair color is a description, not a number from a tool or a count."},{"t":"measure","d":2,"q":"Which definition of quantitative data is correct?","o":["Data based on description and interpretation","Data based on numbers \u2014 from measuring tools or counting","Data that has been averaged","Data collected by more than one person"],"a":1,"e":"Quantitative = numerical. Qualitative = descriptive."},{"t":"measure","d":1,"q":"What is the metric base unit of mass?","o":["Kilogram","Gram","Newton","Liter"],"a":1,"e":"The base unit of mass is the gram; kilo-, milli-, etc. are prefixes applied to it."},{"t":"measure","d":1,"q":"Liters are the base unit of _____ and meters are the base unit of _____.","o":["mass; volume","volume (capacity); distance (length)","distance; mass","volume; mass"],"a":1,"e":"Liters measure volume or capacity; meters measure distance or length; grams measure mass."},{"t":"measure","d":1,"q":"How many base units does the prefix 'kilo-' represent?","o":["100","1000","0.001","10"],"a":1,"e":"Kilo- = 1000 units. Hecto- = 100, deka- = 10, deci- = 0.1, centi- = 0.01, milli- = 0.001."},{"t":"measure","d":1,"q":"The prefix 'centi-' means\u2026","o":["100 units","10 units","0.01 units","0.001 units"],"a":2,"e":"Centi- = 0.01 units, which is why 100 cm make 1 m."},{"t":"measure","d":1,"q":"The prefix 'milli-' means\u2026","o":["0.001 units","0.01 units","1000 units","0.1 units"],"a":0,"e":"Milli- = 0.001 units, so 1000 mm make 1 m and 1000 mL make 1 L."},{"t":"measure","d":2,"q":"Which list puts the prefixes in order from LARGEST to SMALLEST?","o":["kilo, hecto, deka, base, deci, centi, milli","milli, centi, deci, base, deka, hecto, kilo","kilo, deka, hecto, base, centi, deci, milli","hecto, kilo, deka, base, deci, milli, centi"],"a":0,"e":"Kilo (1000), hecto (100), deka (10), base (1), deci (0.1), centi (0.01), milli (0.001)."},{"t":"measure","d":2,"q":"Converting from a smaller unit to a larger unit, what do you do?","o":["Multiply by 10 per step and move the decimal right","Divide by 10 per step and move the decimal left","Multiply by 100 per step","Leave the decimal where it is"],"a":1,"e":"Climbing UP the ladder (right to left), each step divides by 10 \u2014 move the decimal one place left."},{"t":"measure","d":2,"q":"Converting from a larger unit to a smaller unit, what do you do?","o":["Divide by 10 per step","Multiply by 10 per step and move the decimal right","Move the decimal left one place per step","Subtract 10 per step"],"a":1,"e":"Climbing DOWN the ladder (left to right), each step multiplies by 10 \u2014 move the decimal one place right."},{"t":"measure","d":2,"q":"Convert 812 cm to meters.","o":["81.2 m","8.12 m","8120 m","0.812 m"],"a":1,"e":"Centi to base is two steps up: divide by 100, moving the decimal two places left."},{"t":"measure","d":2,"q":"Convert 1.7 kg to grams.","o":["17 g","170 g","1700 g","17,000 g"],"a":2,"e":"Kilo to base is three steps down: multiply by 1000."},{"t":"measure","d":2,"q":"Convert 34 g to kilograms.","o":["0.034 kg","0.34 kg","3400 kg","34,000 kg"],"a":0,"e":"Base to kilo is three steps up: divide by 1000."},{"t":"measure","d":2,"q":"Convert 54,382 mL to liters.","o":["5438.2 L","543.82 L","54.382 L","5.4382 L"],"a":2,"e":"Milli to base is three steps up: divide by 1000."},{"t":"measure","d":2,"q":"Convert 12.9 mm to centimeters.","o":["129 cm","1.29 cm","0.129 cm","12,900 cm"],"a":1,"e":"Milli to centi is one step up: divide by 10."},{"t":"measure","d":2,"q":"Convert 615 kL to liters.","o":["6150 L","61,500 L","615,000 L","0.615 L"],"a":2,"e":"Kilo to base is three steps down: multiply by 1000."},{"t":"measure","d":3,"q":"Convert 7.3 dam (dekameters) to dm (decimeters).","o":["73 dm","730 dm","7300 dm","0.73 dm"],"a":1,"e":"Deka to deci is two steps down: multiply by 100."},{"t":"measure","d":3,"q":"Convert 4,201 hg (hectograms) to milligrams.","o":["4,201,000 mg","42,010,000 mg","420,100,000 mg","4,201,000,000 mg"],"a":2,"e":"Hecto to milli is five steps down: multiply by 100,000. 4,201 \u00d7 100,000 = 420,100,000 mg."},{"t":"measure","d":3,"q":"Convert 789.1 decimeters to dekameters.","o":["78.91 dam","7.891 dam","7891 dam","0.7891 dam"],"a":1,"e":"Deci to deka is two steps up: divide by 100."},{"t":"measure","d":3,"q":"Convert 240,500 cm to kilometers.","o":["24.05 km","2.405 km","240.5 km","0.2405 km"],"a":1,"e":"240,500 cm \u00d7 (1 m / 100 cm) \u00d7 (1 km / 1000 m) = 2.405 km."},{"t":"measure","d":2,"q":"Convert 0.045 km to meters.","o":["4.5 m","45 m","450 m","0.45 m"],"a":1,"e":"Kilo to base is three steps down: 0.045 \u00d7 1000 = 45 m."},{"t":"measure","d":2,"q":"Convert 2500 mg to grams.","o":["0.25 g","2.5 g","25 g","250 g"],"a":1,"e":"Milli to base is three steps up: divide by 1000."},{"t":"measure","d":2,"q":"Convert 3.2 L to milliliters.","o":["32 mL","320 mL","3200 mL","32,000 mL"],"a":2,"e":"Base to milli is three steps down: multiply by 1000."},{"t":"measure","d":2,"q":"Convert 68 cm to millimeters.","o":["6.8 mm","68 mm","680 mm","6800 mm"],"a":2,"e":"Centi to milli is one step down: multiply by 10."},{"t":"measure","d":3,"q":"Convert 0.75 kL to deciliters.","o":["750 dL","7500 dL","75 dL","75,000 dL"],"a":1,"e":"Kilo to deci is four steps down: multiply by 10,000. 0.75 \u00d7 10,000 = 7500 dL."},{"t":"measure","d":3,"q":"Which factor-label setup correctly converts 240,500 cm to km?","o":["240,500 cm \u00d7 (100 cm / 1 m) \u00d7 (1000 m / 1 km)","240,500 cm \u00d7 (1 m / 100 cm) \u00d7 (1 km / 1000 m)","240,500 cm \u00d7 (1 cm / 100 m) \u00d7 (1 m / 1000 km)","240,500 cm \u00d7 (1 m / 1000 cm) \u00d7 (1 km / 100 m)"],"a":1,"e":"List the larger unit as 1 and put how many of the smaller unit make 1 of the larger, so the unwanted units cancel diagonally."},{"t":"measure","d":3,"q":"Why does the metric system work the same way for meters, grams, and liters?","o":["Because they are all measured with the same tool","Because the same prefix scale applies to every base unit","Because they were all invented in the same year","Because they all convert by factors of 12"],"a":1,"e":"The metric system uses the same scale for all measurements, so a kilogram relates to a gram exactly as a kilometer relates to a meter."},{"t":"measure","d":1,"q":"What is ACCURACY?","o":["How consistent your measurements are with each other","How close your data is to the correct or accepted value","How many decimal places your tool has","How many trials you performed"],"a":1,"e":"Accuracy = closeness to the correct (accepted) value. Precision = consistency."},{"t":"measure","d":1,"q":"What is PRECISION?","o":["How close your data is to the true value","How consistent your measurements are \u2014 how close they are to each other","How large your sample is","How carefully you followed instructions"],"a":1,"e":"Precision measures how consistent your data are; accuracy measures how close they are to the true value."},{"t":"measure","d":2,"q":"Five shots land in a tight cluster in the top-left corner of the target. This data is\u2026","o":["Accurate but not precise","Precise but not accurate","Both accurate and precise","Neither accurate nor precise"],"a":1,"e":"Tight cluster = precise. Off the bullseye = not accurate."},{"t":"measure","d":2,"q":"Five shots are scattered evenly all around the bullseye, none especially close to each other. This data is\u2026","o":["Precise but not accurate","Roughly accurate but not precise","Both","Neither"],"a":1,"e":"They average out near the true value (accurate-ish) but they are not consistent with each other, so not precise."},{"t":"measure","d":2,"q":"Five shots land scattered widely in the lower-right corner. This data is\u2026","o":["Precise only","Accurate only","Both","Neither"],"a":3,"e":"Not consistent with each other and not near the true value \u2014 neither precise nor accurate."},{"t":"measure","d":3,"q":"Why must experimental data be BOTH accurate and precise?","o":["So it takes less time to collect","So the data is valid and credible","So it fits on one graph","So no conversions are needed"],"a":1,"e":"Accuracy without precision means unrepeatable results; precision without accuracy means consistently wrong ones. Both are needed for valid, credible data."},{"t":"measure","d":3,"q":"Which THREE things will always limit a measurement?","o":["The accuracy of the measurer, the accuracy of the observer, and the precision of the tool","The temperature, the humidity, and the time of day","The number of trials, the sample size, and the graph type","The units, the prefix, and the decimal place"],"a":0,"e":"Those three limits are why all measurements contain some error."},{"t":"measure","d":2,"q":"Why does 100 mL measured in a beaker not read exactly 100 mL when poured into a graduated cylinder?","o":["The water evaporates","Because all measurements contain error \u2014 the tools and the observers are imperfect","Beakers always over-measure by exactly 5 mL","The cylinder is a different temperature"],"a":1,"e":"Measurements are based on imperfect tools and imperfect observers, so all measurements have error."},{"t":"measure","d":2,"q":"When taking a reading with a measuring tool, how many digits do you estimate past what you can clearly see?","o":["None","One decimal place","Two decimal places","As many as the calculator shows"],"a":1,"e":"Measure, then estimate one decimal place past the smallest marking you can clearly read."},{"t":"measure","d":3,"q":"A graduated cylinder has markings every 1 mL and the meniscus sits exactly on the 38 line. What do you record?","o":["38 mL","38.0 mL","38.00 mL","About 38 mL"],"a":1,"e":"You must include the estimated digit, so 38.0 mL. Writing '38 mL' throws away a digit of precision you actually have."},{"t":"measure","d":2,"q":"Where do you read the level of a liquid in a graduated cylinder?","o":["At the top of the curve","At the bottom of the meniscus","At the highest point where the liquid touches the glass","At the average of the top and bottom"],"a":1,"e":"Liquids stick to the sides of the container, forming a curve \u2014 always read the bottom of the meniscus, at eye level."},{"t":"measure","d":3,"q":"Why is a graduated cylinder more precise than a beaker?","o":["It is made of thicker glass","Its scale has finer graduations, so you can legitimately report more digits","It holds more liquid","It is taller"],"a":1,"e":"Graduated cylinders are named for their graduations \u2014 a finer scale means a more precise measurement."},{"t":"measure","d":3,"q":"Your raw measurements each have two decimal places. Your calculator gives an average of 638.6794125 m. How do you report it?","o":["638.6794125 m","638.679 m","638.68 m","639 m"],"a":2,"e":"Averages must be reported to the same precision as the raw data they came from \u2014 two decimal places here."},{"t":"measure","d":3,"q":"Your raw measurements each have ONE decimal place and the calculated average is 40.5834. How do you report it?","o":["40.58","40.6","41","40.5834"],"a":1,"e":"Match the precision of the raw data: one decimal place."},{"t":"measure","d":3,"q":"Why is it wrong to copy your calculator's full display into a data table?","o":["It looks messy","It claims more precision than your measuring tool actually provided","Calculators are often incorrect","It takes too long"],"a":1,"e":"Derived data must be reported to the same precision as the raw measurements \u2014 extra digits imply precision you never had."},{"t":"measure","d":2,"q":"Two rulers show '25 cm' at different points along their length. What does this illustrate?","o":["One of them is broken","Measurement tools can be made at different scales, so you must read the tool in front of you","Centimeters vary between countries","You should always use the longer ruler"],"a":1,"e":"Tools can be built at different relative scales \u2014 read the actual numbers and markings on the instrument you are holding."},{"t":"measure","d":2,"q":"Which tool would you choose to measure the volume of a liquid most precisely?","o":["A beaker","A graduated cylinder","A ruler","A balance"],"a":1,"e":"Graduated cylinders have a finer scale than beakers, so they give a more precise volume reading."},{"t":"measure","d":3,"q":"A student reports a mass as '15 g' using a balance that reads to the nearest 0.1 g. What is the problem?","o":["The unit is wrong","The estimated decimal place is missing \u2014 it should read 15.0 g","The value is too small","Nothing is wrong"],"a":1,"e":"If the tool resolves tenths, the tenths digit must appear \u2014 even when it is zero."},{"t":"measure","d":2,"q":"Why is measurement described as a fundamental science skill?","o":["Because it is the easiest skill","Because it allows you to collect accurate data that can then be analyzed and interpreted","Because it is required by lab safety rules","Because it replaces observation"],"a":1,"e":"Measuring skillfully is critical to scientists and engineers because it produces the data everything else is built on."},{"t":"chem","d":2,"q":"Which is the class definition of chemistry?","o":["The study of living things and their processes","The branch of science dealing with the identification and properties of different types of matter, especially when they interact and change to form new substances","The study of energy and motion","The study of the periodic table"],"a":1,"e":"Chemistry covers elements, atoms and molecules; the chemical properties of substances; and chemical reactions and bonds."},{"t":"chem","d":2,"q":"Which is NOT a reason biologists study chemistry?","o":["It explains the structure and function of the molecules that make up living things","It explains how enzymes speed up chemical reactions","It explains how DNA stores genetic information","It explains how organisms are classified into species"],"a":3,"e":"Classification is a science skill, not something chemistry explains. The other three were all listed as reasons."},{"t":"chem","d":1,"q":"What is an atom?","o":["Any particle smaller than a molecule","The smallest unit of matter that retains its elemental properties","A group of two or more bonded particles","A positively charged particle in the nucleus"],"a":1,"e":"From the Greek 'atomos', meaning uncuttable \u2014 the smallest unit of matter that still has the element's properties."},{"t":"chem","d":1,"q":"What is an element?","o":["Matter made of only one type of atom","Any pure substance","A group of atoms held together by covalent bonds","A charged atom"],"a":0,"e":"Elements are matter made of only one type of atom."},{"t":"chem","d":2,"q":"What are individual atoms mostly made of?","o":["Densely packed protons","Empty space","Electrons","Neutrons"],"a":1,"e":"Individual atoms are mostly empty space \u2014 the nucleus is tiny compared to the electron cloud around it."},{"t":"chem","d":1,"q":"What is the charge and mass of a PROTON?","o":["Positive, 1 amu","Negative, 1 amu","Neutral, 1 amu","Positive, ~0 amu"],"a":0,"e":"Protons are positively charged, sit in the nucleus, and have a mass of 1 amu."},{"t":"chem","d":1,"q":"What is the charge and mass of a NEUTRON?","o":["Negative, ~0 amu","Neutral, 1 amu","Positive, 1 amu","Neutral, ~0 amu"],"a":1,"e":"Neutrons have no charge and a mass of 1 amu, and they sit in the nucleus."},{"t":"chem","d":1,"q":"What is the charge and mass of an ELECTRON?","o":["Negative, 1 amu","Negative, ~0 amu","Positive, ~0 amu","Neutral, ~0 amu"],"a":1,"e":"Electrons are negatively charged, much smaller than protons and neutrons, with a mass of approximately 0 amu."},{"t":"chem","d":1,"q":"Where are protons and neutrons located?","o":["In the electron cloud","In the nucleus","On the outermost energy level","Between molecules"],"a":1,"e":"The nucleus sits at the center of the atom and contains protons and neutrons."},{"t":"chem","d":1,"q":"Where are electrons located?","o":["In the nucleus","In the electron cloud outside the nucleus","Inside the protons","Between the neutrons"],"a":1,"e":"Electrons spin around the outside of the atom in the electron cloud, in regions called energy levels."},{"t":"chem","d":2,"q":"What determines the identity \u2014 which element it is \u2014 of an atom?","o":["The number of electrons","The number of neutrons","The number of protons in its nucleus","The total mass in amu"],"a":2,"e":"The number of protons in an atom's nucleus determines what element it is. This is a guaranteed test question."},{"t":"chem","d":2,"q":"What is the job of the neutrons in an atom's nucleus?","o":["To give the atom its charge","To keep the nucleus stable","To form bonds with other atoms","To determine the element"],"a":1,"e":"Neutrons keep the nucleus stable; protons determine the element; electrons do the bonding."},{"t":"chem","d":2,"q":"An atom in a NEUTRAL state has\u2026","o":["No electrons","Equal numbers of protons and electrons","Equal numbers of protons and neutrons","More neutrons than protons"],"a":1,"e":"Because protons are + and electrons are \u2212, equal numbers cancel out to a neutral charge."},{"t":"chem","d":3,"q":"Which subatomic particle interacts with the world the most, and why?","o":["Protons, because they carry the charge","Neutrons, because they are the heaviest","Electrons, because they are on the outside of the atom and are given, taken, and shared","All three equally"],"a":2,"e":"Electrons occupy the outer electron cloud, so they are what atoms exchange and share when they interact."},{"t":"chem","d":2,"q":"What are 'energy levels'?","o":["Distinct regions around the atom where electrons exist; electrons gain or lose energy moving between them","Layers of neutrons inside the nucleus","The amount of heat an atom gives off","The strength of a chemical bond"],"a":0,"e":"Electrons usually exist in distinct regions around the atom called energy levels, and can gain or lose energy travelling between them."},{"t":"chem","d":2,"q":"Why do atoms give, take, and share electrons?","o":["To become heavier","To fill their outermost energy level","To lose their charge","To become radioactive"],"a":1,"e":"Atoms want enough electrons to fill their outermost energy level, and these interactions are the cause of chemical reactions."},{"t":"chem","d":3,"q":"An atom has 3 protons and 4 electrons. What is its charge?","o":["+1","\u22121","0","+3"],"a":1,"e":"Charge = protons \u2212 electrons = 3 \u2212 4 = \u22121. More electrons than protons means a negative ion."},{"t":"chem","d":3,"q":"An atom has 11 protons and 10 electrons. What is its charge?","o":["+1","\u22121","0","+11"],"a":0,"e":"11 \u2212 10 = +1. Fewer electrons than protons means a positive ion."},{"t":"chem","d":3,"q":"An atom has 8 protons, 8 neutrons, and 10 electrons. What is its charge?","o":["+2","\u22122","0","\u221210"],"a":1,"e":"Neutrons never affect charge. 8 protons \u2212 10 electrons = \u22122."},{"t":"chem","d":2,"q":"If an atom LOSES electrons, it becomes\u2026","o":["Positively charged","Negatively charged","Neutral","A molecule"],"a":0,"e":"Losing negatively charged electrons leaves an excess of positive protons."},{"t":"chem","d":2,"q":"If an atom GAINS electrons, it becomes\u2026","o":["Positively charged","Negatively charged","Neutral","An element"],"a":1,"e":"Gaining extra negative charges makes the atom negatively charged."},{"t":"chem","d":1,"q":"What is an ion?","o":["Any atom in the nucleus","Any atom with a charge","Two atoms sharing electrons","An atom with extra neutrons"],"a":1,"e":"Any atom with a charge \u2014 from gaining or losing electrons \u2014 is called an ion."},{"t":"chem","d":2,"q":"What is an IONIC bond?","o":["The sharing of electrons between two atoms","The attraction between two oppositely charged ions","A bond between a proton and a neutron","A bond that forms molecules"],"a":1,"e":"One atom takes an electron from another; both become ions, and opposite charges attract. That attraction is the ionic bond."},{"t":"chem","d":2,"q":"What is a COVALENT bond?","o":["The transfer of an electron from one atom to another","The sharing of one or more electrons between atoms","An attraction between charged ions","A bond inside the nucleus"],"a":1,"e":"In covalent bonding atoms share electrons, so their charges do not change."},{"t":"chem","d":2,"q":"Which type of bond forms MOLECULES?","o":["Ionic","Covalent","Both equally","Neither"],"a":1,"e":"A molecule is a group of two or more atoms held together by covalent bonds \u2014 shared electrons."},{"t":"chem","d":1,"q":"What is a molecule?","o":["Any group of two or more atoms held together by covalent bonds","Any atom with a charge","The nucleus of an atom","A group of ions attracted to each other"],"a":0,"e":"Molecules are formed by covalent (shared-electron) bonds."},{"t":"chem","d":3,"q":"What happens when atoms share MORE than one electron pair?","o":["The bond becomes ionic","They form stronger double and triple bonds","The atoms become charged","The molecule breaks apart"],"a":1,"e":"Sharing more electrons forms double and triple bonds \u2014 nitrogen's triple bond is very strong and hard to break."},{"t":"chem","d":3,"q":"Which statement about chemical bonding is correct?","o":["Bonding is the transfer and sharing of neutrons","The type of bond depends on how strongly the atoms pull on each other's electrons and how many they need to fill their energy levels","All bonds are equally strong","Ionic bonds share electrons and covalent bonds transfer them"],"a":1,"e":"Bond type depends on the pull each atom exerts on electrons and how many electrons each needs."},{"t":"chem","d":2,"q":"In the formula 2 H<sub>2</sub>O, what does the 2 in FRONT represent?","o":["The number of hydrogen atoms","The number of molecules","The number of oxygen atoms","The charge"],"a":1,"e":"The coefficient (the big number in front) counts molecules; the subscript counts atoms within one molecule."},{"t":"chem","d":2,"q":"In the formula 2 H<sub>2</sub>O, what does the small subscript 2 represent?","o":["Two water molecules","Two hydrogen atoms in each molecule","Two oxygen atoms","A charge of +2"],"a":1,"e":"The subscript is the number of atoms of that element inside one molecule."},{"t":"chem","d":3,"q":"How many TOTAL hydrogen atoms are in 2 H<sub>2</sub>O?","o":["2","3","4","6"],"a":2,"e":"2 molecules \u00d7 2 hydrogen atoms each = 4 hydrogen atoms (plus 2 oxygen atoms, for 6 atoms total)."},{"t":"chem","d":3,"q":"How many molecules are in 7 O<sub>2</sub>, and how many oxygen atoms in total?","o":["7 molecules, 7 atoms","2 molecules, 7 atoms","7 molecules, 14 atoms","14 molecules, 7 atoms"],"a":2,"e":"The coefficient 7 gives 7 molecules; each holds 2 oxygen atoms, so 14 atoms total."},{"t":"chem","d":3,"q":"What does 4 NH<sub>3</sub> consist of?","o":["4 molecules, each with 1 nitrogen and 3 hydrogen atoms","1 molecule with 4 nitrogen and 3 hydrogen atoms","4 nitrogen atoms and 3 hydrogen atoms","3 molecules of NH<sub>4</sub>"],"a":0,"e":"Coefficient 4 = four molecules; each contains 1 N and 3 H, so 16 atoms in total."},{"t":"chem","d":3,"q":"How many molecules does C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> represent, and how many atoms does one contain?","o":["6 molecules, 24 atoms each","1 molecule, 24 atoms","12 molecules, 6 atoms each","1 molecule, 3 atoms"],"a":1,"e":"No coefficient means one molecule. 6 carbon + 12 hydrogen + 6 oxygen = 24 atoms."},{"t":"chem","d":3,"q":"How should you draw 3 NO<sub>2</sub>?","o":["One large cluster of 3 nitrogen and 2 oxygen atoms","Three separate molecules, each with one N bonded to two O atoms","Three nitrogen atoms bonded to two oxygen atoms","Two separate molecules, each with three N and one O"],"a":1,"e":"The coefficient 3 means three separate molecules; the subscript 2 means each has one N and two O."},{"t":"chem","d":2,"q":"In a chemical reaction equation, what are the REACTANTS?","o":["What you end with, on the right of the arrow","What you start with, on the left of the arrow","The catalysts","The energy released"],"a":1,"e":"Reactants \u2192 Products. Reactants are what you start with; products are what you end with."},{"t":"chem","d":3,"q":"In C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6 O<sub>2</sub> \u2192 6 CO<sub>2</sub> + 6 H<sub>2</sub>O, what are the products?","o":["C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> and O<sub>2</sub>","CO<sub>2</sub> and H<sub>2</sub>O","Only CO<sub>2</sub>","Only C<sub>6</sub>H<sub>12</sub>O<sub>6</sub>"],"a":1,"e":"Products sit on the right of the arrow: carbon dioxide and water."},{"t":"chem","d":3,"q":"In C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6 O<sub>2</sub> \u2192 6 CO<sub>2</sub> + 6 H<sub>2</sub>O, how many oxygen MOLECULES are consumed?","o":["2","6","12","1"],"a":1,"e":"The coefficient 6 in front of O<sub>2</sub> means six oxygen molecules (which is twelve oxygen atoms)."},{"t":"chem","d":2,"q":"Why are protons, neutrons, and electrons called SUBATOMIC particles?","o":["Because they are found under the nucleus","Because 'sub-' means smaller and '-atomic' refers to the atom \u2014 they are smaller than atoms","Because they were discovered after atoms","Because they can be subtracted from atoms"],"a":1,"e":"'Sub-' means smaller, '-atomic' means atom: particles smaller than an atom."},{"t":"chem","d":2,"q":"What gives an element its PROPERTIES?","o":["Its temperature","The numbers of protons, neutrons, and electrons it has","The container it is stored in","Its color"],"a":1,"e":"The number of protons, neutrons, and electrons give elements their properties."},{"t":"chem","d":3,"q":"Sodium gives an electron to chlorine. Which statements are true?","o":["Sodium becomes negative, chlorine becomes positive, and they form a covalent bond","Sodium becomes positive, chlorine becomes negative, and they form an ionic bond","Both stay neutral and form a molecule","Sodium gains mass and chlorine loses mass"],"a":1,"e":"Losing an electron makes sodium a positive ion; gaining one makes chlorine negative; their attraction is an ionic bond."},{"t":"chem","d":3,"q":"Two oxygen atoms share electrons to form O<sub>2</sub>. Which is true?","o":["This is an ionic bond and O<sub>2</sub> is an ion","This is a covalent bond and O<sub>2</sub> is a molecule","Both atoms become charged","One atom gains a proton"],"a":1,"e":"Sharing electrons is covalent bonding, charges do not change, and the result is a molecule."},{"t":"design","d":1,"q":"What is a hypothesis?","o":["A proven scientific fact","A scientist's educated guess answering the question","A summary of the results","A list of the controlled variables"],"a":1,"e":"A hypothesis is an educated guess that answers the research question, and it guides the experiment."},{"t":"design","d":2,"q":"A hypothesis MUST include which two things?","o":["The control group and the experimental group","The independent and dependent variables","The units and the precision","The title and the trials"],"a":1,"e":"A hypothesis should include both the IV and the DV, be testable, and be able to be answered 'no'."},{"t":"design","d":3,"q":"Which are REQUIRED of a hypothesis? (A) written in 'If\u2026then\u2026' format, (B) testable, (C) can be proven right, (D) can be proven wrong.","o":["A and B","B and D","A, B, and D","B, C, and D"],"a":1,"e":"Only B and D. 'If\u2026then\u2026' is a helpful format, not a requirement, and a hypothesis can never be proven right."},{"t":"design","d":3,"q":"Can an investigation prove a hypothesis RIGHT?","o":["Yes, if you run enough trials","Yes, if the data is precise","No \u2014 you can only obtain evidence that supports it; you can only prove one wrong","Only if a second scientist repeats it"],"a":2,"e":"This is one of the most important ideas in the unit: you can disprove a hypothesis, but you can only ever gather supporting evidence for it."},{"t":"design","d":2,"q":"Why is the 'If\u2026then\u2026' format recommended even though it is not required?","o":["It is the only format teachers accept","It helps you clearly identify the independent variable you are changing and your prediction of the effect","It makes the hypothesis provable","It guarantees the hypothesis is correct"],"a":1,"e":"The format makes the cause (IV) and the predicted effect (DV) explicit, but you do not have to use it."},{"t":"design","d":2,"q":"True or False: the scientific method is linear.","o":["True \u2014 the steps must always be done in order","False \u2014 the order can vary, you may need to repeat steps and loop back, and unexpected results can send you down a new path","True, but only for controlled experiments","False, because it has no steps at all"],"a":1,"e":"The method is iterative. A wrong hypothesis isn't a failure \u2014 you learned from it, and it brings you closer to the answer."},{"t":"design","d":2,"q":"The scientific method is usually preceded by what?","o":["A hypothesis","An observation","Data collection","Communication"],"a":1,"e":"Observation typically comes first and generates the question you go on to investigate."},{"t":"design","d":2,"q":"Which sequence best represents the scientific method as taught in this unit?","o":["Hypothesis \u2192 observation \u2192 question \u2192 conclusion","Observation \u2192 question \u2192 hypothesis \u2192 experiment \u2192 data collection \u2192 analysis \u2192 communication","Experiment \u2192 hypothesis \u2192 observation \u2192 communication","Question \u2192 conclusion \u2192 hypothesis \u2192 experiment"],"a":1,"e":"Observation, question formulation, hypothesis development, experimentation, data collection, analysis, and communication."},{"t":"design","d":1,"q":"What is the INDEPENDENT variable?","o":["The variable you measure","The variable you change on purpose","The variable kept constant","The variable in the control group only"],"a":1,"e":"The IV is the variable changed on purpose, and it goes on the x-axis."},{"t":"design","d":1,"q":"What is the DEPENDENT variable?","o":["The variable changed on purpose","The variable that is measured and is affected by the independent variable","The variable held constant","The group that receives no treatment"],"a":1,"e":"The DV is measured, is affected by the IV, and goes on the y-axis."},{"t":"design","d":2,"q":"What are CONTROLLED variables (constants)?","o":["The variables kept constant so that only the IV can cause changes in the DV","The variables you measure at the end","The variables you change one at a time","The group receiving no treatment"],"a":0,"e":"Controlled variables ensure that only the independent variable is causing changes in the dependent variable."},{"t":"design","d":2,"q":"What is a 'controlled experiment'?","o":["An experiment supervised by a teacher","An experiment in which all variables except the independent variable are kept constant","An experiment with no control group","An experiment where every variable is changed at once"],"a":1,"e":"That is the definition given in the Experimental Design slides."},{"t":"design","d":2,"q":"In 'How does the amount of water added affect how long it takes beans to sprout?', what is the independent variable?","o":["The amount of water","The time to sprout","The type of soil","The temperature"],"a":0,"e":"Amount of water is what you deliberately change."},{"t":"design","d":2,"q":"In an experiment on how the amount of water affects how long beans take to sprout, what is the dependent variable?","o":["The amount of water","The length of time for beans to sprout","The type of bean","The amount of sunlight"],"a":1,"e":"Time to sprout is what you measure, and it is affected by the amount of water."},{"t":"design","d":2,"q":"In an experiment on how the amount of water affects bean sprouting time, which is a CONTROLLED variable?","o":["The amount of water added","The time taken to sprout","The amount of sunlight each bean receives","Whether the beans sprout at all"],"a":2,"e":"Sunlight, soil amount and type, and temperature must all be held constant so only water differs."},{"t":"design","d":1,"q":"What is a CONTROL group?","o":["The group that receives the treatment","The group that does not receive the treatment and serves as the standard of comparison","The group with the most participants","The group that sets the controlled variables"],"a":1,"e":"The control group does not receive treatment and is the standard everything else is compared against."},{"t":"design","d":1,"q":"What is an EXPERIMENTAL group?","o":["The group that receives the treatment","The group that receives no treatment","The group used only for observation","The group that designs the experiment"],"a":0,"e":"Experimental groups receive the treatment, and you can have more than one at different levels."},{"t":"design","d":3,"q":"'Scientists gave one group of mice a high-protein diet and another group a standard diet, then measured weight change.' Which is the control group?","o":["The high-protein group","The standard-diet group","Both groups","Neither \u2014 there is no control"],"a":1,"e":"The standard diet is the no-treatment baseline, so it is the control group."},{"t":"design","d":3,"q":"Scientists gave one group of mice a high-protein diet and another a standard diet, then measured weight change. What are the IV and DV?","o":["IV = weight change; DV = diet type","IV = diet type; DV = weight change over time","IV = number of mice; DV = diet type","IV = time; DV = diet type"],"a":1,"e":"Diet type is deliberately changed; weight change is what gets measured."},{"t":"design","d":3,"q":"'Researchers wanted to know if salt concentration affects seed germination.' What is the best control group?","o":["Seeds soaked in water with a low salt concentration","Seeds soaked in water with no salt","Seeds not soaked at all","Seeds soaked in the highest salt concentration"],"a":1,"e":"The control gets everything except the treatment \u2014 soaked in water, but with no salt added."},{"t":"design","d":3,"q":"Researchers soak seeds in solutions of different salt concentrations and record how quickly they germinate. What are the IV and DV?","o":["IV = salt concentration; DV = how fast the seeds germinate","IV = germination speed; DV = salt concentration","IV = water amount; DV = salt concentration","IV = seed type; DV = salt concentration"],"a":0,"e":"Salt concentration is changed on purpose; germination speed is measured."},{"t":"design","d":2,"q":"To test whether a fertilizer enhances corn growth, what should the control group be?","o":["Corn with double fertilizer","Corn with no fertilizer added","Corn grown in a different field","Corn measured only at the end"],"a":1,"e":"Control = corn without fertilizer. Experimental = corn with fertilizer added."},{"t":"design","d":3,"q":"In a drug trial, one group receives a placebo and the other receives the real drug. Which group is the control?","o":["The drug group","The placebo group","Both","Neither"],"a":1,"e":"The placebo group receives no active treatment, so it is the standard of comparison."},{"t":"design","d":3,"q":"Why does an experiment need a control group at all?","o":["To double the amount of data","To give you a standard of comparison, so you can tell whether the treatment made any difference","To satisfy lab safety rules","To reduce the number of trials needed"],"a":1,"e":"Without a baseline you cannot know whether the change you observed was caused by the treatment."},{"t":"design","d":3,"q":"What is wrong with the hypothesis 'People behave more immorally when there are fewer rules'?","o":["It is too long","'Immorally' is not measurable and 'fewer rules' is not defined, so it is not testable","It uses the 'If\u2026then\u2026' format","It names both variables"],"a":1,"e":"A hypothesis must be testable. Neither variable here is defined in a way you could actually measure."},{"t":"design","d":3,"q":"Which is the best-written hypothesis for an experiment on temperature and plant growth?","o":["Plants might grow differently at different temperatures","Temperature is important for plants","If bean plants are grown at higher temperatures, then their height gain over two weeks will increase","Plants grow best at 25 \u00b0C, which is a known fact"],"a":2,"e":"It names the IV (temperature) and the DV (height gain over two weeks), it is testable, and it could come back false."},{"t":"design","d":3,"q":"Which hypothesis is NOT testable?","o":["If seeds are soaked in salt water, then fewer will germinate","If fertilizer concentration increases, then corn height will increase","Plants have feelings about their environment","If the water amount increases, then beans will sprout sooner"],"a":2,"e":"'Feelings' cannot be measured or disproven, so no experiment could test it."},{"t":"design","d":3,"q":"Can an experiment have more than one experimental group?","o":["No, only one is allowed","Yes \u2014 for example, beans given 10 mL, 20 mL, and 30 mL of water are three experimental groups","Only if there are two control groups","Only in chemistry experiments"],"a":1,"e":"Controlled experiments tend to include a control group and ONE OR MORE experimental groups at different levels of the IV."},{"t":"design","d":3,"q":"What goes wrong if you change two variables at once?","o":["Nothing \u2014 it saves time","You cannot tell which variable caused the change in the results","The data becomes qualitative","The hypothesis becomes untestable"],"a":1,"e":"That is exactly why controlled variables exist: only the IV should differ between groups."},{"t":"design","d":3,"q":"Your hypothesis is rejected by the data. What does that mean?","o":["The experiment failed and must be discarded","You learned from it \u2014 a rejected hypothesis brings you closer to the right answer","Your measurements must be inaccurate","You should change the data"],"a":1,"e":"Hypotheses are either supported or rejected, and being wrong is information that moves the investigation forward."},{"t":"design","d":3,"q":"For 'Which M&M color melts the fastest?', which is the independent variable?","o":["Time taken to melt","M&M shell color","Heat source distance","Room temperature"],"a":1,"e":"Shell color is what you deliberately vary; time to melt is the DV; heat source, distance, surface, and starting temperature are controlled."},{"t":"design","d":3,"q":"You are investigating which M&M color melts fastest. Which of these is a CONTROLLED variable?","o":["The color of each M&M","The time each takes to melt","The distance from the heat source","Which M&M melted first"],"a":2,"e":"Distance to the heat source must be identical for every candy so only color differs."},{"t":"design","d":3,"q":"In the turtle-egg data (temperature vs. eggs hatched), what are the IV and DV?","o":["IV = eggs hatched; DV = temperature","IV = temperature; DV = number of eggs hatched","IV = time; DV = temperature","IV = nest location; DV = temperature"],"a":1,"e":"Temperature is set by the experimenter and goes on the x-axis; eggs hatched is measured and goes on the y-axis."},{"t":"design","d":2,"q":"What is the relationship between hypotheses and experiments?","o":["Hypotheses summarize the experiment's results","Hypotheses guide experiments and are either supported or rejected by them","Experiments prove hypotheses correct","Hypotheses are written after the data is collected"],"a":1,"e":"Hypotheses guide experiments and will either be supported or rejected."},{"t":"design","d":3,"q":"A student tests whether music affects study performance but plays loud music for one group in a noisy room and quiet music for another in a silent room. What is the flaw?","o":["The hypothesis is untestable","Two variables changed at once \u2014 music type and background noise \u2014 so the cause cannot be identified","There is no dependent variable","The sample is too small"],"a":1,"e":"Background noise should have been a controlled variable; letting it change alongside the IV destroys the comparison."},{"t":"design","d":3,"q":"Which of these belongs in a well-designed experiment?","o":["Hypothesis, independent variable, dependent variable, controlled variables, control group, experimental group","Hypothesis, conclusion, graph, table","Observation, classification, prediction, communication","Title, headings, trials, precision"],"a":0,"e":"That list is exactly the components named in the unit objectives."},{"t":"design","d":3,"q":"A researcher measures plant height in centimeters after four weeks at five different light levels. Which is the DEPENDENT variable and its unit?","o":["Light level, in lux","Plant height, in centimeters","Time, in weeks","Number of plants"],"a":1,"e":"Height is measured and depends on the light level, so it is the DV \u2014 and it needs its unit (cm) on the y-axis label."},{"t":"design","d":2,"q":"Where does the independent variable go when you graph your experiment?","o":["The x-axis","The y-axis","In the legend","In the title only"],"a":0,"e":"IV on the x-axis, DV on the y-axis \u2014 the same rule that governs data table layout."},{"t":"design","d":3,"q":"Which statement about the polar bear / dice activity best captures its lesson?","o":["Rules in science are always obvious from the start","You form a hypothesis, test it, learn from wrong guesses, and revise \u2014 the scientific method in action","Guessing has no place in science","Only measurement matters in an investigation"],"a":1,"e":"The activity had you propose a rule, test it against data, and revise when wrong \u2014 exactly the iterative loop of the scientific method."},{"t":"design","d":3,"q":"An investigation reports: 'Group A got 0 mL of fertilizer; Groups B, C, and D got 5, 10, and 15 mL.' How many experimental groups are there?","o":["One","Two","Three","Four"],"a":2,"e":"Group A is the control (no treatment); B, C, and D are three experimental groups at different IV levels."},{"t":"design","d":2,"q":"Which is the best description of what a hypothesis does in an investigation?","o":["It records the data","It guides the experiment and is then supported or rejected","It replaces the control group","It states the conclusion"],"a":1,"e":"Hypotheses guide experiments and will either be supported or rejected by the evidence."}];
+
 const TOPICS = {
-  skills : {n:"Science Skills",      d:"Observation, classification, measurement, prediction, controlling variables, interpretation, communication.", c:"#D3A237"},
-  safety : {n:"Lab Safety",          d:"The safety agreement, fire safety and PASS, and the 21-point participation rubric.",                        c:"#A82A5C"},
-  graphs : {n:"Tables & Graphs",     d:"Table elements, choosing a graph, axes, correlations and relationships, reading trends.",                  c:"#0F8259"},
-  measure: {n:"Measurement",         d:"Metric prefixes and conversions, accuracy vs. precision, meniscus, reporting precision.",                  c:"#0C6A7C"},
-  chem   : {n:"Chemistry",           d:"Atoms, subatomic particles, ions, bonding, formulas, reactants and products.",                             c:"#855C9C"},
-  design : {n:"Experimental Design", d:"The scientific method, variables, control and experimental groups, writing hypotheses.",                   c:"#CD8B24"}
+  skills : {n:"Science Skills",      d:"Observation, classification, measurement, prediction, controlling variables, interpretation, communication.", c:"#F5A524"},
+  safety : {n:"Lab Safety",          d:"The safety agreement, fire safety and PASS, and the 21-point participation rubric.",                        c:"#FF6E8B"},
+  graphs : {n:"Tables & Graphs",     d:"Table elements, choosing a graph, axes, correlations and relationships, reading trends.",                  c:"#3ED498"},
+  measure: {n:"Measurement",         d:"Metric prefixes and conversions, accuracy vs. precision, meniscus, reporting precision.",                  c:"#5AB6F5"},
+  chem   : {n:"Chemistry",           d:"Atoms, subatomic particles, ions, bonding, formulas, reactants and products.",                             c:"#C58BF2"},
+  design : {n:"Experimental Design", d:"The scientific method, variables, control and experimental groups, writing hypotheses.",                   c:"#F0D264"}
 };
 const ORDER = ["skills","safety","graphs","measure","chem","design"];
-// Mock-exam weighting
+// Mock-exam weighting, roughly proportional to how much class time each topic got
 const MOCK_MIX = {skills:4, safety:5, graphs:9, measure:9, chem:7, design:6};
 
 let deck=[], idx=0, results=[], streak=0, best=0, chosenLen=20, mode="", modeLabel="";
 
-/* ---------- storage (best scores) ---------- */
+/* ---------- storage (best scores), safe on every failure path ---------- */
 function loadBest(){ try{ return JSON.parse(localStorage.getItem("u1best")||"{}"); }catch(e){ return {}; } }
 function saveBest(o){ try{ localStorage.setItem("u1best",JSON.stringify(o)); }catch(e){} }
-
-/* ---------- theme ---------- */
-document.getElementById("btnTheme").onclick=()=>{
-  const r=document.documentElement;
-  const dark=r.getAttribute("data-theme")==="dark"||(!r.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme:dark)").matches);
-  r.setAttribute("data-theme",dark?"light":"dark");
-  try{ localStorage.setItem("u1theme",dark?"light":"dark"); }catch(e){}
-};
-try{ const t=localStorage.getItem("u1theme"); if(t) document.documentElement.setAttribute("data-theme",t); }catch(e){}
 
 /* ---------- helpers ---------- */
 const shuffle=a=>{const x=a.slice();for(let i=x.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[x[i],x[j]]=[x[j],x[i]];}return x;};
@@ -422,13 +1278,13 @@ function start(key, customDeck){
     deck = chosenLen ? pool.slice(0,chosenLen) : pool;
     mode=key; modeLabel=TOPICS[key].n;
   }
-  
+  // shuffle the four options of every question, remapping the answer index
   deck=deck.map(q=>{
     const pairs=shuffle(q.o.map((text,i)=>({text,ok:i===q.a})));
     return {...q, o:pairs.map(p=>p.text), a:pairs.findIndex(p=>p.ok)};
   });
   idx=0; results=[]; streak=0; best=0; disarmQuit();
-  $("home").classList.add("hide"); $("results").classList.add("hide"); $("quiz").classList.remove("hide");
+  $("qzHome").classList.add("hide"); $("qzRes").classList.add("hide"); $("qzPlay").classList.remove("hide");
   ["chipCount","chipScore","chipStreak","btnQuit"].forEach(i=>$(i).classList.remove("hide"));
   window.scrollTo(0,0);
   render();
@@ -436,7 +1292,7 @@ function start(key, customDeck){
 
 function home(){
   disarmQuit();
-  $("quiz").classList.add("hide"); $("results").classList.add("hide"); $("home").classList.remove("hide");
+  $("qzPlay").classList.add("hide"); $("qzRes").classList.add("hide"); $("qzHome").classList.remove("hide");
   ["chipCount","chipScore","chipStreak","btnQuit"].forEach(i=>$(i).classList.add("hide"));
   $("progBar").style.width="0%";
   buildHome(); window.scrollTo(0,0);
@@ -508,7 +1364,8 @@ function next(){
 }
 
 document.addEventListener("keydown",e=>{
-  if($("quiz").classList.contains("hide")) return;
+  if(!document.getElementById("view-quiz").classList.contains("on")) return;
+  if($("qzPlay").classList.contains("hide")) return;
   const answered = $("fbSlot").children.length>0;
   if(!answered && e.key>="1" && e.key<="4"){
     const b=$("opts").children[+e.key-1]; if(b) b.click();
@@ -525,9 +1382,9 @@ function ringSVG(pct){
     <circle cx="66" cy="66" r="${R}" fill="none" stroke="var(--sunk)" stroke-width="11"></circle>
     <circle cx="66" cy="66" r="${R}" fill="none" stroke="${col}" stroke-width="11" stroke-linecap="round"
       stroke-dasharray="${on.toFixed(1)} ${(C-on).toFixed(1)}" transform="rotate(-90 66 66)"></circle>
-    <text x="66" y="63" text-anchor="middle" fill="var(--ink)" font-family="var(--fb)"
-      font-size="31" font-weight="600" dominant-baseline="middle">${pct}%</text>
-    <text x="66" y="88" text-anchor="middle" fill="var(--ink-3)" font-family="var(--fm)"
+    <text x="66" y="63" text-anchor="middle" fill="var(--ink)" font-family="Archivo, sans-serif"
+      font-size="31" font-weight="800" dominant-baseline="middle">${pct}%</text>
+    <text x="66" y="88" text-anchor="middle" fill="var(--ink3)" font-family="JetBrains Mono, monospace"
       font-size="10.5" letter-spacing="1.4">CORRECT</text>
   </svg>`;
 }
@@ -535,7 +1392,7 @@ function ringSVG(pct){
 function finish(){
   const right=results.filter(r=>r.ok).length, n=results.length;
   const pct=Math.round(right/n*100);
-  $("quiz").classList.add("hide"); $("results").classList.remove("hide");
+  $("qzPlay").classList.add("hide"); $("qzRes").classList.remove("hide");
   ["chipCount","chipScore","chipStreak","btnQuit"].forEach(i=>$(i).classList.add("hide"));
   $("progBar").style.width="100%";
 
@@ -548,6 +1405,7 @@ function finish(){
   $("resTitle").textContent=verdict;
   $("resSub").textContent=`${right} of ${n} correct on ${modeLabel.toLowerCase()}. Longest streak: ${best}.`;
 
+  // per-topic accuracy
   const bd=$("breakdown"); bd.innerHTML="";
   ORDER.forEach(k=>{
     const rows=results.filter(r=>r.q.t===k);
@@ -575,7 +1433,7 @@ function finish(){
   const w=$("missedWrap");
   if(!missed.length){
     w.innerHTML=`<h2 class="sec">Nothing missed</h2>
-      <p style="color:var(--ink-2);max-width:56ch">Clean run. Try Hard mode, or the full 239-question shuffle.</p>`;
+      <p style="color:var(--ink2);max-width:56ch">Clean run. Try Hard mode, or the full 239-question shuffle.</p>`;
   }else{
     w.innerHTML=`<h2 class="sec">What you missed (${missed.length})</h2><div class="missed" id="missList"></div>`;
     const ml=$("missList");
@@ -592,6 +1450,6 @@ function finish(){
 }
 
 buildHome();
+
+})();
 </script>
-</body>
-</html>
